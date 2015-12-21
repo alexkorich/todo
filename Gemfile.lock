@@ -38,6 +38,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    angular_csrf (0.1.4)
+      rails (>= 3.1)
     arel (6.0.3)
     autoprefixer-rails (6.1.2)
       execjs
@@ -382,6 +384,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angular_csrf
   bootstrap-sass
   bson_ext
   byebug

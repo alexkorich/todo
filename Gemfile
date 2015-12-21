@@ -24,6 +24,7 @@ gem 'mongoid', '~> 5.0.0'
 gem 'bson_ext'
 
 
+gem 'angular_csrf'
 gem 'cancancan', '~> 1.10'
 gem "haml-rails", "~> 0.9"
 gem 'carrierwave'
