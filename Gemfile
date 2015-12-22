@@ -29,6 +29,7 @@ gem 'cancancan', '~> 1.10'
 gem "haml-rails", "~> 0.9"
 gem 'carrierwave'
 gem 'figaro'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 gem "bootstrap-sass"
 gem "omniauth-facebook"

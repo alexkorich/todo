@@ -68,6 +68,10 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-mongoid (0.8.1)
+      carrierwave (>= 0.8.0, < 0.11.0)
+      mongoid (>= 3.0, < 6.0)
+      mongoid-grid_fs (>= 1.3, < 3.0)
     childprocess (0.5.8)
       ffi (~> 1.0, >= 1.0.11)
     codeclimate-test-reporter (0.4.8)
@@ -257,6 +261,9 @@ GEM
       mongo (~> 2.1)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
+    mongoid-grid_fs (2.2.1)
+      mime-types (>= 1.0, < 3.0)
+      mongoid (>= 3.0, < 6.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -391,6 +398,7 @@ DEPENDENCIES
   cancancan (~> 1.10)
   capistrano-rails
   carrierwave
+  carrierwave-mongoid
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   database_cleaner
