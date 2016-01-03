@@ -1,11 +1,12 @@
 !!! 5
-%html{'ng-app'=> true}
+%html{'ng-app'=> 'todoList'}
   %head
     %title Todo
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"
     = csrf_meta_tags
-  %body
+  %body{"ng-controller" => "MainCtrl"}
     %p
       {{2+2}}
+      {{test}}
