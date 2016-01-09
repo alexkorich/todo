@@ -1,3 +1,40 @@
-<div ng-repeat="project in projects">
+<div ng-repeat="project in projects" ng-cloak>
   {{project}}
+
+  <div class="center col-md-8" >
+    <div id="panel">
+      <div class="panel-header">
+        <div class="panel calendar"></div>
+        <div class="panel project-name">{{project.name}}</div>
+        <div class="panel-edit"></div>
+        <div class="panel-destroy"></div>
+      </div>
+      <div class="panel-search">
+        <form action="">
+          <input type="text">
+          <input type="button" value="Search">
+        </form>
+
+
+      </div>
+    </div>
+  <div ng-repeat="task in tasks" ng-cloak>
+     <div>
+          <input type="checkbox">
+     </div> 
+    <div ng-cloak>{{task.name}}</div>
+    <div class="control">
+      <span class="glyphicon glyphicon-pencil"></span>
+      <span class="glyphicon glyphicon-trash"></span>
+      <span class="glyphicon glyphicon-paperclip"></span>
+      
+    </div>
+  </div>
+
+
+  </div>
+</div>
+<div class="button center btn btn-default" ng-click='createProject()'>
+  <div class=" col-md-6"><span class='glyphicon glyphicon-plus'></span></div>
+  <div class='col-md-6' >Add TODO List</div>
 </div>
