@@ -34,7 +34,8 @@ var todoList = angular.module('todoList', ['Devise','templates', 'ui.router' ])
         '$scope', '$state',"Auth",
         function($scope, $state, Auth){
             Auth.currentUser().then(function(user) {
-                 console.log(user)
+                 console.log(user);
+                 $scope.user=user;
         }, function(error) {
             console.log(error.data.error)
             $state.go('login');
