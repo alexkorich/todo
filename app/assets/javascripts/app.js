@@ -1,4 +1,4 @@
-var todoList = angular.module('todoList', ['Devise','templates', 'ui.router' ])
+angular.module('todoList', ['Devise','templates', 'ui.router', 'ngResource' ])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
@@ -29,41 +29,24 @@ var todoList = angular.module('todoList', ['Devise','templates', 'ui.router' ])
                         }]
                 });
             $urlRouterProvider.otherwise('login');
-        }])
-    .controller("MainCtrl", [
-        '$scope', '$state',"Auth",
-        function($scope, $state, Auth){
-            Auth.currentUser().then(function(user) {
-                 console.log(user);
-                 $scope.user=user;
-        }, function(error) {
-            console.log(error.data.error)
-            $state.go('login');
-        });
+        }]).factory('projects', ['$http',function($http){
+   var o = {
+    projects: []
+  };
 
 
-            $scope.test = 'Hello world!';
-            $scope.varta = function(){
-                $state.go('login');
-            }
-        }])
+  o.getAll = function() {
+    return $http.get('/projects.json').success(function(data){
+      angular.copy(data, o.projects);
+    });
+  };
+  return o;
+}])
 
-    .controller("AuthCtrl", [
-        '$scope', '$state',"Auth",
-        function($scope, $state, Auth){
-              $scope.login = function() {
-                Auth.login($scope.user).then(function(){
-                    $state.go('home');
-                        });     
-                    };
-                     $scope.signUp = function(){
-                         $state.go('register');
-
-
-                     }
-                  $scope.register = function() {
-                    Auth.register($scope.user).then(function(){
-                      $state.go('home');
-                    });
-                  };
-        }]);
+        .controller('NavCtrl', [
+'$scope',
+'Auth',
+function($scope, Auth){
+  $scope.signedIn = Auth.isAuthenticated;
+  $scope.logout = Auth.logout;
+}]);

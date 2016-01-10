@@ -20,6 +20,7 @@
     "angular": "~1.4.8",
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.6",
-    "AngularDevise": "angular-devise#~1.1.0"
+    "AngularDevise": "angular-devise#~1.1.0",
+    "angular-resource": "~1.4.8"
   }
 }

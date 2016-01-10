@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   Todo::Application.routes.draw do
     namespace :api, defaults: {format: :json} do
       namespace :v1 do
-        resources :projects
+        resources :projects do
+          resources :tasks do
+            resources :comments
+            end
+        end
       end
     end   
   end

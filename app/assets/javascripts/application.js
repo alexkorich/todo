@@ -16,8 +16,9 @@
 //= require angular-rails-templates
 //= require angular-ui-router
 //= require AngularDevise/lib/devise
+//= require angular-resource/angular-resource
+//= require app
+//= require_tree ./controllers
 //= require_tree ./templates
 //= require_tree ./services
-//= require_tree ./controllers
-//= require_tree ./directives
 //= require_tree .
