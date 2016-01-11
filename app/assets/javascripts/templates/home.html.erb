@@ -16,15 +16,14 @@
       </div>
     </div>
   <div ng-repeat="task in project.tasks" ng-cloak>
-     <div>
-          <input type="checkbox">
-     </div> 
-    <div ng-cloak>{{task.name}}</div>
-    <div class="control">
+    <input type="checkbox" style="display:block; float:left">
+     <div class="panel" style="display:block; float:left" ng-cloak>{{task.name}}</div>
+      <div class="glyphicon glyphicon-chevron-down"></div>
       <div class="glyphicon glyphicon-pencil"></div>
-      <span class="glyphicon glyphicon-trash"></span>
-      <span class="glyphicon glyphicon-paperclip"></span>
-    </div>
+      <div class="glyphicon glyphicon-trash"></div>
+      <div class="glyphicon glyphicon-paperclip"></div>
+
+    <div ng-repeat='comment in task.comments'> {{comment}}</div>
   </div>
   </div>
 </div>
