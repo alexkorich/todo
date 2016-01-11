@@ -1,14 +1,10 @@
 angular.module('todoList')
 .controller("MainCtrl", [
-  '$scope', '$state',"Auth", "projects",
-   function($scope, $state, Auth){
-      Auth.currentUser().then(function(user) {
-        console.log(user);
-        $scope.user=user;
-        }, function(error) {
-            console.log(error.data.error)
-            $state.go('login');
-        });
+  '$scope', '$state', "projects",
+   function($scope, $state, projects){
+    projects.getAll()
+            $scope.projects=projects.projects
             $scope.test = 'Hello world!';
+            console.log($scope.projects)
             // $scope.projects = projects.projects;
         }]);

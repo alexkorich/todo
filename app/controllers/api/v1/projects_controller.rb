@@ -4,7 +4,9 @@ module  Api
       skip_before_filter :verify_authenticity_token
       respond_to :json
       def index
-        respond_with(Project.where(username: current_user).order("completed ASC").order("id DESC"))
+        puts "aaa"
+        puts 
+        respond_with Project.all
       end
       def show 
         respond_with(Project.find(params[:id]))
@@ -23,15 +25,12 @@ module  Api
           respond_to do |format|
             format.json{ render :json => @todo}
           end
+        end
+      end
+      def destroy
+          respond_with Project.destroy(params[:id])
       end
     end
-
-
-
-    def destroy
-      respond_with Project.destroy(params[:id])
-    end
   end
-    end
-  end
-  end
+end
+ 
