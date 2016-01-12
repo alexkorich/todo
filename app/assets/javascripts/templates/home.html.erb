@@ -1,33 +1,39 @@
-<div ng-repeat="project in projects" ng-cloak>
-  <div class="center col-md-12" >
-    <div id="panel"  class="center col-md-12" >
-      <div class="panel-header col-md-12">
-        <div class="glyphicon glyphicon-calendar" style="display:block; float: left"></div>
-        <div class="panel project-name"  style="display:block; float: left; width:600px">{{project.name}}</div>
-        <div class="glyphicon glyphicon-pencil"></div>
-        <div class="glyphicon glyphicon-trash"></div>
+<div ng-repeat="project in projects" ng-cloak style=" background-color:white; padding:0; margin-bottom:10px" class="container img-rounded">
+  <div  >
+    <div class="center col-md-12 panel panel-primary" style="padding:0" >
+      <div class="center col-md-12 panel-heading">
+        <div class="glyphicon glyphicon-calendar" style="display:block; float: left; font-size:16px;"></div>
+        <div class="project-name"  style="display:block; float: left; width:600px;  font-size:16px;">{{project.name}}</div>
+        <div ><span class="glyphicon glyphicon-pencil" style="display:block; float: left;  font-size:16px;"> </span></div>
+        <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;"></span></div>
       </div>
-      <div class="panel-search col-md-12">
-      <div class="glyphicon glyphicon-plus " style="float:left"></div>
+      <div class="panel-search col-md-12" style="background-color:lightgrey">
+        <div style="float:left; font-size:20px; color:green">
+          <span class="glyphicon glyphicon-plus"></span>
+        </div>
         <form action="" class="form-inline" style="float:left; display:block">
-          <input type="text" class="form-control">
-          <input type="button" class= "btn" value="Add task">
+          <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:600px">
+          <input type="button" value="Add task" class="btn btn-success">
         </form>
       </div>
     </div>
-  <div ng-repeat="task in project.tasks" ng-cloak>
-    <input type="checkbox" style="display:block; float:left">
-     <div class="panel" style="display:block; float:left" ng-cloak>{{task.name}}</div>
-      <div class="glyphicon glyphicon-chevron-down"></div>
-      <div class="glyphicon glyphicon-pencil"></div>
-      <div class="glyphicon glyphicon-trash"></div>
-      <div class="glyphicon glyphicon-paperclip"></div>
+    <table>
+      <tbody ng-repeat="task in project.tasks" ng-cloak>
+        <tr>
+          <td class=""><input type="checkbox" style="display:block; float:left"></td>
+          <td class=""><div style="display:block; float:left" ng-cloak>{{task.name}}</div></td>
+          <td class=""><span class="glyphicon glyphicon-chevron-down"></span></td>
+          <td class=""><span class="glyphicon glyphicon-pencil"></span></td>
+          <td class=""><span class="glyphicon glyphicon-trash"></span></td>
+          <td class=""><span class="glyphicon glyphicon-paperclip"></span></td>
+        </tr>
+        <tr ng-repeat="comment in task.comments" ng-show="showComments()"> <td><div>{{comment.author}} said: {{comment.text}}</div></td></tr>
+      </tbody>
 
-    <div ng-repeat='comment in task.comments'> {{comment}}</div>
-  </div>
+    </table>
   </div>
 </div>
-<div class="button center btn btn-default col-md-2 centered" ng-click='createProject()'>
-  <div class=" col-md-6"><span class='glyphicon glyphicon-plus'></span></div>
-  <div class='col-md-6' >Add TODO List</div>
+<div class="center-block btn btn-primary" style="width:150px" ng-click='createProject()'>
+   <span class='glyphicon glyphicon-plus'></span>
+  <span >Add TODO List</span>
 </div>
