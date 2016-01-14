@@ -1,11 +1,4 @@
- angular.module('todoList').factory('tasks', ['$http',function($http){
-   var o = {
-    tasks: []
-  };
-  o.getAll = function() {
-    return $http.get('api/v1/projects/tasks.json').success(function(data){
-      angular.copy(data, o.tasks);
-    });
-  };
-  return o;
-}])
+ angular.module('todoList').factory('Tasks',function($resource){
+  var data=$resource('/api/v1/tasks/:id',{id: '@id'}, {"newComment": {"method":"post", params: {id: '@id'}, url:"api/v1/tasks/:id/comments"}})
+  return data;
+  });

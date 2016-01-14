@@ -4,18 +4,19 @@ module  Api
       skip_before_filter :verify_authenticity_token
       respond_to :json
       def index
-        puts "aaa"
-        puts 
-        respond_with Project.all
+        respond_with Project.find(params[:project_id]).comments
       end
       def show 
-        respond_with(Project.find(params[:id]))
+        respond_with Project.find(params[:project_id]).comments
       end
       def create 
-        @todo=Project.new(todo_params)
-        if @todo.save
+
+          @project = Project.where("tasks._id" => BSON::ObjectId(params[:id])).first
+        task=@project.tasks.find(params[:id])
+        task.comments<<Comment.new(text:params[:text])
+        if @project.save
           respond_to do |format|
-            format.json{ render :json => @todo}
+            format.json{ render :json => @project}
           end
         end
       end

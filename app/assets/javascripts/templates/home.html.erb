@@ -5,15 +5,15 @@
         <div class="glyphicon glyphicon-calendar" style="display:block; float: left; font-size:16px;"></div>
         <div class="project-name"  style="display:block; float: left; width:600px;  font-size:16px;">{{project.name}}</div>
         <div ><span class="glyphicon glyphicon-pencil" style="display:block; float: left;  font-size:16px;"> </span></div>
-        <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;"></span></div>
+        <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;" ng-click="deleteProject(project._id.$oid)"></span></div>
       </div>
       <div class="panel-search col-md-12" style="background-color:lightgrey">
         <div style="float:left; font-size:20px; color:green">
           <span class="glyphicon glyphicon-plus"></span>
         </div>
         <form action="" class="form-inline" style="float:left; display:block">
-          <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:600px">
-          <input type="button" value="Add task" class="btn btn-success">
+          <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:600px" ng-model="newTask.name">
+          <input type="button" value="Add task" class="btn btn-success" ng-click="createTask(project._id.$oid)">
         </form>
       </div>
     </div>
@@ -24,10 +24,13 @@
           <td class=""><div style="display:block; float:left" ng-cloak>{{task.name}}</div></td>
           <td class=""><span class="glyphicon glyphicon-chevron-down"></span></td>
           <td class=""><span class="glyphicon glyphicon-pencil"></span></td>
-          <td class=""><span class="glyphicon glyphicon-trash"></span></td>
-          <td class=""><span class="glyphicon glyphicon-paperclip"></span></td>
+          <td class=""><span class="glyphicon glyphicon-trash" ng-click="deleteTask(task._id.$oid)"></span></td>
+          <td class=""></td>
         </tr>
-        <tr ng-repeat="comment in task.comments" ng-show="showComments()"> <td><div>{{comment.author}} said: {{comment.text}}</div></td></tr>
+        <tr><td><form><input type="text" ng-model="a.newComment" placeholder="new cmment!"> <input type="button" ng-click="createComment(task._id.$oid, a.newComment)"></form></td></tr>
+        <tr ng-repeat="comment in task.comments">
+          <td><div style="float:left;">{{comment.text}}</div><div style="float:left;"><span class="glyphicon glyphicon-trash" ng-click="deleteTask(task._id.$oid)"></span><span class="glyphicon glyphicon-paperclip"></span></div></td>
+        </tr>
       </tbody>
 
     </table>

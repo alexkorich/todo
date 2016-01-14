@@ -9,10 +9,10 @@ module  Api
         respond_with Project.all
       end
       def show 
-        respond_with(Project.find(params[:id]))
+        respond_with(Project.find(params['id']))
       end
       def create 
-        @todo=Project.new(todo_params)
+        @todo=Project.new()
         if @todo.save
           respond_to do |format|
             format.json{ render :json => @todo}
@@ -28,7 +28,7 @@ module  Api
         end
       end
       def destroy
-          respond_with Project.destroy(params[:id])
+          respond_with Project.destroy_all({ :_id => BSON::ObjectId(params[:id])})
       end
     end
   end
