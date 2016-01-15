@@ -28,8 +28,13 @@ module  Api
           end
         end
       end
+
       def destroy
-          respond_with Project.destroy(params[:id])
+        puts params
+       @project = Project.where("tasks._id" => BSON::ObjectId(params[:taskId])).first
+        task=@project.tasks.find(params[:taskId])
+        comment=task.comments.find(params[:id])
+          respond_with comment.delete
       end
     end
   end

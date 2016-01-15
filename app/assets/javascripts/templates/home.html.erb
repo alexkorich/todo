@@ -29,7 +29,7 @@
         </tr>
         <tr><td><form><input type="text" ng-model="a.newComment" placeholder="new cmment!"> <input type="button" ng-click="createComment(task._id.$oid, a.newComment)"></form></td></tr>
         <tr ng-repeat="comment in task.comments">
-          <td><div style="float:left;">{{comment.text}}</div><div style="float:left;"><span class="glyphicon glyphicon-trash" ng-click="deleteTask(task._id.$oid)"></span><span class="glyphicon glyphicon-paperclip"></span></div></td>
+          <td><div style="float:left;">{{comment.text}}</div><div style="float:left;"><span class="glyphicon glyphicon-trash" ng-click="deleteComment(comment._id.$oid, task._id.$oid)"></span><span class="glyphicon glyphicon-paperclip"></span></div></td>
         </tr>
       </tbody>
 
