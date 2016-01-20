@@ -17,6 +17,7 @@
 //= require angular-ui-router
 //= require AngularDevise/lib/devise
 //= require angular-resource/angular-resource
+//= require ng-file-upload/ng-file-upload
 //= require app
 //= require_tree ./controllers
 //= require_tree ./templates

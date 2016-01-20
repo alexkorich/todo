@@ -1,4 +1,4 @@
-angular.module('todoList', ['Devise','templates', 'ui.router', 'ngResource' ])
+angular.module('todoList', ['Devise','templates', 'ui.router', 'ngResource','ngFileUpload' ])
 .config([
   '$stateProvider',
   '$urlRouterProvider',

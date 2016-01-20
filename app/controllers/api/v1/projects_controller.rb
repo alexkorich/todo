@@ -12,7 +12,8 @@ module  Api
         respond_with(Project.find(params['id']))
       end
       def create 
-        @todo=Project.new()
+        puts params
+        @todo=Project.new(project_params)
         if @todo.save
           respond_to do |format|
             format.json{ render :json => @todo}
@@ -29,6 +30,12 @@ module  Api
       end
       def destroy
           respond_with Project.destroy_all({ :_id => BSON::ObjectId(params[:id])})
+      end
+
+       def project_params
+        params.require(:project).permit(:name, :datetime)
+
+        
       end
     end
   end

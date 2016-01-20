@@ -21,10 +21,17 @@ module  Api
         end
       end
       def update
-        @todo = Project.find(params[:id])
-        if @todo.update(todo_params)
+        puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+        puts params[:file]
+        puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+
+        @project = Project.where("tasks._id" => BSON::ObjectId(params[:taskId])).first
+        task=@project.tasks.find(params[:taskId])
+        comment = task.comments.find(params[:id])
+        comment.attach=params[:file]
+        if @project.update()
           respond_to do |format|
-            format.json{ render :json => @todo}
+            format.json{ render :json => @project}
           end
         end
       end
@@ -36,6 +43,7 @@ module  Api
         comment=task.comments.find(params[:id])
           respond_with comment.delete
       end
+
     end
   end
 end
