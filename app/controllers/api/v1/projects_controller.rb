@@ -14,11 +14,13 @@ module  Api
       def create 
         puts params
         @todo=Project.new(project_params)
+        current_user.projects<<@todo
         if @todo.save
-          respond_to do |format|
-            format.json{ render :json => @todo}
-          end
-        end
+            render :json => @todo
+      else
+
+        render json: @todo.errors
+      end
       end
       def update
         @todo = Project.find(params[:id])
@@ -33,11 +35,10 @@ module  Api
       end
 
        def project_params
-        params.require(:project).permit(:name, :datetime)
+               params.require(:project).permit(:name, :deadline)
 
         
       end
     end
   end
 end
- 

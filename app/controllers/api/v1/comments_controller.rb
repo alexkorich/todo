@@ -3,14 +3,14 @@ module  Api
     class CommentsController < ApplicationController
       skip_before_filter :verify_authenticity_token
       respond_to :json
-      def index
-        respond_with Project.find(params[:project_id]).comments
-      end
-      def show 
-        respond_with Project.find(params[:project_id]).comments
-      end
+      # not used as embedded in project
+      # def index
+      #   respond_with Project.find(params[:project_id]).comments
+      # end
+      # def show 
+      #   respond_with Project.find(params[:project_id]).comments
+      # end
       def create 
-
           @project = Project.where("tasks._id" => BSON::ObjectId(params[:id])).first
         task=@project.tasks.find(params[:id])
         task.comments<<Comment.new(text:params[:text])
@@ -21,10 +21,6 @@ module  Api
         end
       end
       def update
-        puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
-        puts params[:file]
-        puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
-
         @project = Project.where("tasks._id" => BSON::ObjectId(params[:taskId])).first
         task=@project.tasks.find(params[:taskId])
         comment = task.comments.find(params[:id])
@@ -43,7 +39,11 @@ module  Api
         comment=task.comments.find(params[:id])
           respond_with comment.delete
       end
-
+      # def find_comment
+      #    @project = Project.where("tasks._id" => BSON::ObjectId(params[:taskId])).first
+      #   task=@project.tasks.find(params[:taskId])
+      #   comment = task.comments.find(params[:id])
+      # end
     end
   end
 end
