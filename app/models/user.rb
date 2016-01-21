@@ -28,7 +28,7 @@ class User
 
 
   validates_presence_of :username
-
+  has_many :projects
   ## Confirmable
   # field :confirmation_token,   type: String
   # field :confirmed_at,         type: Time
