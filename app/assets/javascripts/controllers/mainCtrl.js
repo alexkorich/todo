@@ -13,8 +13,8 @@ angular.module('todoList')
       };
 
       $scope.deleteProject=function(id){
-        Projects.delete({id:id});
-        $scope.projects=Projects.query()
+        Projects.$delete({id:id});
+        // $scope.projects=Projects.query()
       };
 
       $scope.createTask=function(id){
