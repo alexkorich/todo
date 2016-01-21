@@ -1,5 +1,6 @@
-TODO List project
-=========================
+#TODO List project
+
+##Technologies:
 
 * Frontend:                     AngularJS
 * Angular modules:              [angular-devise](https://github.com/cloudspace/angular_devise) ,templates, ui.router, ngResource,ngFileUpload
@@ -15,9 +16,8 @@ TODO List project
 
 Simple ToDo app on Ruby on Rails with AngularJS. Supports file upload for comments.
 
-Specs:
-------
-Registered users:
+##Specs:
+###Registered users:
 ​
  * User is able to create/update/delete projects 
  * User is able to add tasks to his project 
@@ -28,8 +28,7 @@ Registered users:
  * User is able to delete coments 
  * User is able to attach files to coments 
 
- Not yet implemented:
- --------------------
+ ###Not yet implemented:
  * User is able to sign in/sign up by email/password or Facebook 
  * User is able to prioritise tasks into a project 
  * Deploy on EC2 
