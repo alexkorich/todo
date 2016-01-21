@@ -6,8 +6,13 @@ angular.module('todoList')
       $scope.test = 'Hello world!';
       $scope.newProject={};
       $scope.projects=Projects.query();
-      console.log(Object.getOwnPropertyNames(Projects))
+
       $scope.createProject=function(){
+        Projects.save({project:{name:$scope.newProject.name, deadline:$scope.newProject.dateTime}})
+        $scope.projects=Projects.query()
+      };
+
+      $scope.updateProject=function(name, deadline){
         Projects.save({project:{name:$scope.newProject.name, deadline:$scope.newProject.dateTime}})
         $scope.projects=Projects.query()
       };
@@ -17,11 +22,20 @@ angular.module('todoList')
         // $scope.projects=Projects.query()
       };
 
+
       $scope.createTask=function(id){
         console.log(id);
         Projects.newTask({id:id, task:{name:$scope.newTask.name}});
         $scope.projects=Projects.query()
       };
+
+      //  $scope.updateTask=function(id){
+      //   console.log(id);
+      //   Tasks.delete({id:id});
+      //   $scope.projects=Projects.query()
+      // }
+
+
        $scope.deleteTask=function(id){
         console.log(id);
         Tasks.delete({id:id});
@@ -53,13 +67,5 @@ angular.module('todoList')
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
     };
-
-
-
-
-
-
-
-
 
     }]);
