@@ -9,7 +9,6 @@ angular.module('todoList', ['ng-token-auth','templates', 'ui.router', 'ngResourc
         templateUrl: 'home.html',
         controller: 'MainCtrl'
         })
-
       .state('login', {
         url: '/login',
         templateUrl: 'login.html',
