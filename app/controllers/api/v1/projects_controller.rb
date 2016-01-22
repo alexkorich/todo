@@ -1,10 +1,12 @@
 class Api::V1::ProjectsController < ApplicationController
 
+  authorize_resource
+
   skip_before_filter :verify_authenticity_token
   respond_to :json
 
   def index
-    respond_with Project.where
+    respond_with Project.where(user_id:current_user.id)
   end
 
   def create 

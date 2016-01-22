@@ -1,12 +1,12 @@
 class Api::V1::CommentsController < ApplicationController
-      
+        
   skip_before_filter :verify_authenticity_token
   respond_to :json
 
   def create 
     @project = Project.where("tasks._id" => BSON::ObjectId(params[:id])).first
-    task=@project.tasks.find(params[:id])
-    task.comments<<Comment.new(text:params[:text])
+    @task=@project.tasks.find(params[:id])
+    @task.comments<<Comment.new(text:params[:text])
     if @project.save
       respond_to do |format|
         format.json{ render :json => @project}

@@ -31,7 +31,6 @@
           <td class="center-block">
             <div style="float:left;">{{comment}}</div><div style="float:left;"><span class="glyphicon glyphicon-trash" ng-click="deleteComment(comment._id.$oid, task._id.$oid)"></span><span class="glyphicon glyphicon-paperclip"></span></div>
             <div class="button" ngf-select="upload($file, comment._id.$oid, task._id.$oid)">Upload on file select</div>
-            
           </td>
         </tr>
         <tr ng-show="task.showComments">
@@ -50,10 +49,11 @@
   <span >Add TODO List</span>
   </div>   
 </div>
+
 <div ng-show="showCreateProject">
   <form>
     <input type="text" ng-model="newProject.name" require>
     <input type="datetime-local" ng-model="newProject.dateTime">
     <input type="submit" ng-click='createProject()'>
   </form>    
-  </div>
+</div>

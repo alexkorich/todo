@@ -1,5 +1,10 @@
 class User
   include Mongoid::Document
+  
+  validates_presence_of :username
+  
+  has_many :projects
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -25,10 +30,6 @@ class User
   
   field :username, type: String
 
-
-
-  validates_presence_of :username
-  has_many :projects
   ## Confirmable
   # field :confirmation_token,   type: String
   # field :confirmed_at,         type: Time

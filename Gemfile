@@ -21,15 +21,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'angular_csrf'
 gem 'fog'
 gem 'devise'
-gem 'mongoid', '~> 5.0.0'
-gem 'bson_ext'
+
 gem 'angular-rails-templates'
 
 gem 'cancancan', '~> 1.10'
 gem "haml-rails", "~> 0.9"
 gem 'carrierwave'
 gem 'figaro'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 gem "bootstrap-sass"
 gem "omniauth-facebook"
