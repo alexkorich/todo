@@ -7,22 +7,30 @@ angular.module('todoList', ['ng-token-auth','templates', 'ui.router', 'ngResourc
       .state('home', {
         url: '/',
         templateUrl: 'home.html',
-        controller: 'MainCtrl'
-        })
+        controller: 'MainCtrl',
+        resolve: {
+          auth: function($auth) {
+            return $auth.validateUser().catch(function(resp) {
+            $state.go('login')
+        });
+          }
+        }})
       .state('login', {
         url: '/login',
         templateUrl: 'login.html',
-        controller: 'AuthCtrl'
+        controller: 'SessionCtrl'
         })
       .state('register', {
         url: '/register',
         templateUrl: 'register.html',
-        controller: 'AuthCtrl'
+        controller: 'RegistrationCtrl'
         });    
       $urlRouterProvider.otherwise('login');
         }])
+
+
  .config(function($authProvider) {
         $authProvider.configure({
-            apiUrl: 'localhost:3000'
+            apiUrl: ''
         });
     });
