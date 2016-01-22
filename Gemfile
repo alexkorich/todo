@@ -17,18 +17,17 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'pg'
 gem 'angular_csrf'
 gem 'fog'
-gem 'devise'
 
+gem 'devise_token_auth'
 gem 'angular-rails-templates'
 
 gem 'cancancan', '~> 1.10'
 gem "haml-rails", "~> 0.9"
 gem 'carrierwave'
 gem 'figaro'
-
 gem "bootstrap-sass"
 gem "omniauth-facebook"
 gem "omniauth-github"

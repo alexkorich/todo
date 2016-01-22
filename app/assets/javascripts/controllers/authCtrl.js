@@ -1,12 +1,10 @@
 angular.module('todoList')
 .controller("AuthCtrl", [
-  '$scope', '$state',"Auth",
+  '$scope', '$state',
   
-  function($scope, $state, Auth){
+  function($scope, $state){
     $scope.login = function() {
-      Auth.login($scope.user).then(function(){
-        $state.go('home');
-          });     
+          
         };
 
      $scope.signUp = function(){
@@ -14,9 +12,7 @@ angular.module('todoList')
        }
 
      $scope.register = function() {
-      Auth.register($scope.user).then(function(){
-        $state.go('home');
-        });
+      
       };
 
 

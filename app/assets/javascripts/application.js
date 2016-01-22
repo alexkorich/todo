@@ -15,9 +15,10 @@
 //= require angular
 //= require angular-rails-templates
 //= require angular-ui-router
-//= require AngularDevise/lib/devise
+//= require ng-token-auth/dist/ng-token-auth
 //= require angular-resource/angular-resource
 //= require ng-file-upload/ng-file-upload
+//= require angular-cookie/angular-cookie
 //= require app
 //= require_tree ./controllers
 //= require_tree ./templates

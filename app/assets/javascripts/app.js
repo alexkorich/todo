@@ -1,4 +1,4 @@
-angular.module('todoList', ['Devise','templates', 'ui.router', 'ngResource','ngFileUpload' ])
+angular.module('todoList', ['ng-token-auth','templates', 'ui.router', 'ngResource','ngFileUpload' ])
 .config([
   '$stateProvider',
   '$urlRouterProvider',
@@ -13,21 +13,17 @@ angular.module('todoList', ['Devise','templates', 'ui.router', 'ngResource','ngF
       .state('login', {
         url: '/login',
         templateUrl: 'login.html',
-        controller: 'AuthCtrl',  onEnter: ['$state', 'Auth', function($state, Auth) {
-          Auth.currentUser().then(function (){
-            $state.go('home');
-            })
-          }]
+        controller: 'AuthCtrl'
         })
       .state('register', {
         url: '/register',
         templateUrl: 'register.html',
-        controller: 'AuthCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
-          Auth.currentUser().then(function (){
-            $state.go('home');
-            })
-          }]
+        controller: 'AuthCtrl'
         });    
       $urlRouterProvider.otherwise('login');
-        }]);
+        }])
+ .config(function($authProvider) {
+        $authProvider.configure({
+            apiUrl: 'localhost:3000'
+        });
+    });
