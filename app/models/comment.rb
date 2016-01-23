@@ -1,3 +1,4 @@
 class Comment < ActiveRecord::Base
-   mount_uploader :attach, AttachUploader
+  belongs_to :task
+  mount_uploader :attach, AttachUploader
 end

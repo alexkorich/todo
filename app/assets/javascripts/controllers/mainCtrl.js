@@ -18,7 +18,7 @@ angular.module('todoList')
       };
 
       $scope.deleteProject=function(id){
-        Projects.$delete({id:id});
+        Projects.delete({id:id});
         // $scope.projects=Projects.query()
       };
 

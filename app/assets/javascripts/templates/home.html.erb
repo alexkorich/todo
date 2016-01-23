@@ -5,7 +5,7 @@
         <div class="glyphicon glyphicon-calendar" style="display:block; float: left; font-size:16px;"></div>
         <div class="project-name"  style="display:block; float: left; width:600px;  font-size:16px;">{{project.name}}</div>
         <div ><span class="glyphicon glyphicon-pencil" style="display:block; float: left;  font-size:16px;" ng-click="project.showEdit=true"> </span></div>
-        <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;" ng-click="deleteProject(project._id.$oid)"></span></div>
+        <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;" ng-click="deleteProject(project.id)"></span></div>
         <div ng-show="project.showEdit()"></div>
       </div>
       <div class="panel-search col-md-12" style="background-color:lightgrey">

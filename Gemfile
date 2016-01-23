@@ -21,7 +21,7 @@ gem 'pg'
 gem 'angular_csrf'
 gem 'fog'
 
-gem 'devise_token_auth'
+gem 'devise'
 gem 'angular-rails-templates'
 
 gem 'cancancan', '~> 1.10'

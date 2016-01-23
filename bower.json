@@ -22,8 +22,6 @@
     "bootstrap": "~3.3.6",
     "AngularDevise": "angular-devise#~1.1.0",
     "angular-resource": "~1.4.8",
-    "ng-file-upload": "~11.1.1",
-    "ng-token-auth": "~0.0.28",
-    "angular-cookie": "~4.0.10"
+    "ng-file-upload": "~11.1.1"
   }
 }

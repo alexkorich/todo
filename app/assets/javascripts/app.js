@@ -1,4 +1,4 @@
-angular.module('todoList', ['ng-token-auth','templates', 'ui.router', 'ngResource','ngFileUpload' ])
+angular.module('todoList', ['Devise','templates', 'ui.router', 'ngResource','ngFileUpload' ])
 .config([
   '$stateProvider',
   '$urlRouterProvider',
@@ -7,30 +7,27 @@ angular.module('todoList', ['ng-token-auth','templates', 'ui.router', 'ngResourc
       .state('home', {
         url: '/',
         templateUrl: 'home.html',
-        controller: 'MainCtrl',
-        resolve: {
-          auth: function($auth) {
-            return $auth.validateUser().catch(function(resp) {
-            $state.go('login')
-        });
-          }
-        }})
+        controller: 'MainCtrl'
+        })
+
       .state('login', {
         url: '/login',
         templateUrl: 'login.html',
-        controller: 'SessionCtrl'
+        controller: 'AuthCtrl',  onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.currentUser().then(function (){
+            $state.go('home');
+            })
+          }]
         })
       .state('register', {
         url: '/register',
         templateUrl: 'register.html',
-        controller: 'RegistrationCtrl'
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.currentUser().then(function (){
+            $state.go('home');
+            })
+          }]
         });    
       $urlRouterProvider.otherwise('login');
-        }])
-
-
- .config(function($authProvider) {
-        $authProvider.configure({
-            apiUrl: ''
-        });
-    });
+        }]);
