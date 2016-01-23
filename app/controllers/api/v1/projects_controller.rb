@@ -1,39 +1,45 @@
 class Api::V1::ProjectsController < ApplicationController
 
   authorize_resource
-
+  before_action :set_project, except: [:index, :create] 
   skip_before_filter :verify_authenticity_token
   respond_to :json
 
   def index
-    respond_with Project.where(user_id:current_user.id)
+    respond_with Project.where(user:current_user)
   end
 
   def create 
-    @todo=Project.new(project_params)
-    current_user.projects<<@todo
-    if @todo.save
-      render :json => @todo
+    @project=Project.new(project_params)
+    current_user.projects<<@project
+    if @project.save
+      render :json => @project
       else
-      render json: @todo.errors
+      render json: @project.errors
     end
   end
 
   def update
-    @todo = Project.find(params[:id])
-    if @todo.update(todo_params)
+    if @project.update(todo_params)
       respond_to do |format|
-        format.json{ render :json => @todo}
+        format.json{ render :json => @project}
       end
     end
   end
 
   def destroy
-    respond_with Project.delete(params[:id])
+    respond_with @project.delete
   end
 
+
+  protected
+  
   def project_params
     params.require(:project).permit(:name, :deadline)      
+  end
+
+  def set_project
+    @project=Project.find(params[:id])  
   end
 
 end

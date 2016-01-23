@@ -4,10 +4,9 @@ class Api::V1::CommentsController < ApplicationController
   respond_to :json
 
   def create 
-    @project = Project.where("tasks._id" => BSON::ObjectId(params[:id])).first
-    @task=@project.tasks.find(params[:id])
+    @task = Task.find(params[:id])
     @task.comments<<Comment.new(text:params[:text])
-    if @project.save
+    if @tas.save
       respond_to do |format|
         format.json{ render :json => @project}
       end
@@ -33,9 +32,7 @@ class Api::V1::CommentsController < ApplicationController
     comment=task.comments.find(params[:id])
     respond_with comment.delete
   end
-  # def find_comment
-  #    @project = Project.where("tasks._id" => BSON::ObjectId(params[:taskId])).first
-  #   task=@project.tasks.find(params[:taskId])
-  #   comment = task.comments.find(params[:id])
-  # end
+  def set_task
+    @task=Task.find(params[:id])
+  end
 end
