@@ -31,23 +31,28 @@ gem 'figaro'
 gem "bootstrap-sass"
 gem "omniauth-facebook"
 gem "omniauth-github"
+gem 'puma'
 
-gem 'capistrano-rails', group: :development
-
+group :development do
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
+end
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-end
-group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'database_cleaner'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem 'faker'
   gem 'selenium-webdriver'
+  gem 'capybara'
   gem 'launchy'
 end

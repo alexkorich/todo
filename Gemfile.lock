@@ -65,6 +65,18 @@ GEM
     capistrano-rails (1.1.6)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
+    capybara (2.5.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -283,6 +295,7 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.18.2)
+    puma (2.15.3)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -387,6 +400,8 @@ GEM
       rack (>= 1.0)
     websocket (1.2.2)
     xml-simple (1.1.5)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -397,7 +412,12 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   cancancan (~> 1.10)
+  capistrano
+  capistrano-bundler
   capistrano-rails
+  capistrano-rvm
+  capistrano3-puma
+  capybara
   carrierwave
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
@@ -414,6 +434,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-github
   pg
+  puma
   rails (= 4.2.3)
   rspec-rails
   sass-rails (~> 5.0)
