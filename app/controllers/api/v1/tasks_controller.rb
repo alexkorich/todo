@@ -1,24 +1,23 @@
 class Api::V1::TasksController < ApplicationController
 
+  authorize_resource      
   skip_before_filter :verify_authenticity_token
   respond_to :json
-  # before_filter :find_project
+  before_action :set_task, only: [:update, :destroy]
+  
  
  def create
-    authorize :read, Project 
-    @project=Project.find(params[:id])
-    @task=Task.new(task_params)
-    @project.tasks<<@task
-    if @project.save
-      respond_to do |format|
-        format.json{ render :json => @project}
-      end
+  @project=Project.find(params[:project_id])
+  @task=Task.new(task_params)
+  @project.tasks<<@task
+  if @project.save
+    respond_to do |format|
+      format.json{ render :json => @project}
     end
+  end
   end
 
   def update
-    @project = Project.where("tasks._id" => BSON::ObjectId(params[:id])).first
-    @task=@project.tasks.find(params[:id])
     if @task.update(task_params)
       respond_to do |format|
         format.json{ render :json => @task}
@@ -27,13 +26,14 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def destroy
-    #can't directly find task!
-    project = Project.where("tasks._id" => BSON::ObjectId(params[:id])).first
-    task=project.tasks.find(params[:id])
-   respond_with task.delete
+   respond_with @task.delete
   end
 
-  protected
+  private
+
+  def set_task
+    @task=Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:name)

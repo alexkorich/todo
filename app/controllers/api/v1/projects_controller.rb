@@ -1,7 +1,7 @@
 class Api::V1::ProjectsController < ApplicationController
 
   authorize_resource
-  before_action :set_project, except: [:index, :create] 
+  before_action :set_project, only: [:update, :destroy] 
   skip_before_filter :verify_authenticity_token
   respond_to :json
 
@@ -32,7 +32,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
 
-  protected
+  private
   
   def project_params
     params.require(:project).permit(:name, :deadline)      

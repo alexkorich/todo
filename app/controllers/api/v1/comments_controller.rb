@@ -1,38 +1,41 @@
 class Api::V1::CommentsController < ApplicationController
-        
-  skip_before_filter :verify_authenticity_token
+  
+  authorize_resource      
   respond_to :json
+  skip_before_filter :verify_authenticity_token
+  before_action :set_comment, only: [:update, :destroy]
 
   def create 
-    @task = Task.find(params[:id])
+    @task = Task.find(:task_id)
     @task.comments<<Comment.new(text:params[:text])
-    if @tas.save
+    if @task.save
       respond_to do |format|
-        format.json{ render :json => @project}
+        format.json{ render :json => @task}
       end
     end
   end
 
   def update
-    @project = Project.where("tasks._id" => BSON::ObjectId(params[:taskId])).first
-    task=@project.tasks.find(params[:taskId])
-    comment = task.comments.find(params[:id])
-    comment.attach=params[:file]
-    if @project.update()
+    @comment.attach=params[:file]
+    if @comment.update(comment_params)
       respond_to do |format|
-        format.json{ render :json => @project}
+        format.json{ render :json => @comment}
       end
     end
   end
 
   def destroy
-    puts params
-   @project = Project.where("tasks._id" => BSON::ObjectId(params[:taskId])).first
-    task=@project.tasks.find(params[:taskId])
-    comment=task.comments.find(params[:id])
-    respond_with comment.delete
+    respond_with @comment.delete
   end
-  def set_task
-    @task=Task.find(params[:id])
+
+  private
+  
+  def comment_params
+
   end
+
+  def set_comment
+     @comment = Comment.find(params[:id])
+  end
+
 end
