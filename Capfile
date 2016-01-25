@@ -14,7 +14,7 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/bundler
 #   https://github.com/capistrano/rails
 #   https://github.com/capistrano/passenger
-#require 'capistrano/bundler'
+require 'capistrano/bundler'
 require 'capistrano/rvm'
 require 'capistrano/rails/assets' # for asset handling add
 require 'capistrano/rails/migrations' # for running migrations

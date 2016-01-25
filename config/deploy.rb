@@ -33,7 +33,7 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # Default value for keep_releases is 5
 set :keep_releases, 5
 set :rvm_type, :user
-set :rvm_ruby_version, 'jruby-1.7.19' # Edit this if you are using MRI Ruby
+set :rvm_ruby_version, 'ruby-2.2.1' # Edit this if you are using MRI Ruby
 
 
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }
@@ -50,18 +50,3 @@ set :puma_workers, 0
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
-
-
-
-namespace :deploy do
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
-end
