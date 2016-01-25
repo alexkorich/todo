@@ -6,7 +6,7 @@ class Api::V1::CommentsController < ApplicationController
   before_action :set_comment, only: [:update, :destroy]
 
   def create 
-    @task = Task.find(:task_id)
+    @task = Task.find(params[:task_id])
     @task.comments<<Comment.new(text:params[:text])
     if @task.save
       respond_to do |format|
