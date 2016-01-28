@@ -52,8 +52,19 @@
 
 <div ng-show="showCreateProject">
   <form>
-    <input type="text" ng-model="newProject.name" require>
-    <input type="datetime-local" ng-model="newProject.dateTime">
+    <input type="text" ng-model="newProject.name" placeholder="Project name" require>
+    <p class="input-group">
+    <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="newProject.dateTime" is-open="isOpen"  />
+    <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)">
+        <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+    </span>
+</p>
     <input type="submit" ng-click='createProject()'>
+     
   </form>    
 </div>
+
+
+

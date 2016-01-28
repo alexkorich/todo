@@ -6,7 +6,14 @@ angular.module('todoList')
       $scope.test = 'Hello world!';
       $scope.newProject={};
       $scope.projects=Projects.query();
+    $scope.isOpen = false;
 
+    $scope.openCalendar = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+         $scope.isOpen = true;
+    };
       $scope.createProject=function(){
         Projects.save({project:{name:$scope.newProject.name, deadline:$scope.newProject.dateTime}})
         $scope.projects=Projects.query()

@@ -1,9 +1,11 @@
-angular.module('todoList', ['Devise','templates', 'ui.router', 'ngResource','ngFileUpload' ])
+angular.module('todoList', ['Devise','templates','ngAnimate', 'ui.router','ui.bootstrap' ,'ngResource',
+                            'ngFileUpload', 'ui.bootstrap.datetimepicker' ])
 .config([
   '$stateProvider',
   '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
     $stateProvider
+
       .state('home', {
         url: '/',
         templateUrl: 'home.html',
@@ -19,6 +21,7 @@ angular.module('todoList', ['Devise','templates', 'ui.router', 'ngResource','ngF
             })
           }]
         })
+
       .state('register', {
         url: '/register',
         templateUrl: 'register.html',

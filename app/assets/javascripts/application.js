@@ -18,6 +18,9 @@
 //= require AngularDevise/lib/devise
 //= require angular-resource/angular-resource
 //= require ng-file-upload/ng-file-upload
+//= require angular-animate/angular-animate
+//= require angular-bootstrap/ui-bootstrap-tpls
+//= require bootstrap-ui-datetime-picker/dist/datetime-picker.min.js
 //= require app
 //= require_tree ./controllers
 //= require_tree ./templates
