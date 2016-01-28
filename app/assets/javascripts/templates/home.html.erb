@@ -1,9 +1,13 @@
 <div ng-repeat="project in projects" ng-cloak style=" background-color:white; padding:0; margin-bottom:10px" class="container img-rounded">
-  <div  >
+  <div>
     <div class="center col-md-12 panel panel-primary" style="padding:0" >
       <div class="center col-md-12 panel-heading">
         <div class="glyphicon glyphicon-calendar" style="display:block; float: left; font-size:16px;"></div>
-        <div class="project-name"  style="display:block; float: left; width:600px;  font-size:16px;">{{project.name}}</div>
+        <div  style="display:block; float: left; width:600px;  font-size:16px;">
+          <span class="project-name" >{{project.name}}</span>
+          <span ng-show="project.deadline">due date:{{project.deadline| date:"MM/dd/yyyy 'at' h:mma"}}</span>
+        </div>
+        
         <div ><span class="glyphicon glyphicon-pencil" style="display:block; float: left;  font-size:16px;" ng-click="project.showEdit=true"> </span></div>
         <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;" ng-click="deleteProject(project.id)"></span></div>
         <div ng-show="project.showEdit()"></div>
@@ -28,18 +32,21 @@
           <td class=""><span class="glyphicon glyphicon-trash" ng-click="deleteTask(task.id)"></span></td>
         </tr>
         <tr ng-repeat="comment in task.comments" ng-show="task.showComments">
-          <td class="center-block">
-            <div style="float:left;">{{comment}}</div><div style="float:left;"><span class="glyphicon glyphicon-trash" ng-click="deleteComment(comment.id)"></span><span class="glyphicon glyphicon-paperclip"></span></div>
-            <div class="button" ngf-select="upload($file, comment._id.$oid, task._id.$oid)">Upload on file select</div>
-          </td>
+          <td></td>
+          <td class="center-block"><div style="float:left;">{{comment.text}} at {{comment.created_at|date: "MM/dd/yyyy h:mma"}}</div></td> 
+          <td><span class="glyphicon glyphicon-paperclip" ngf-select="upload($file, comment.id, task.id)"></span>
+          <td><a  ng-show="comment.attach.url" href="{{comment.attach.url}}" target="_self">Download attachment</a></td>
+          <td><span class="glyphicon glyphicon-trash" ng-click="deleteComment(comment.id)"></span></td>
         </tr>
         <tr ng-show="task.showComments">
           <td colspan="5">
-            <form><input type="text" ng-model="a.newComment" placeholder="new comment!"> <input type="button" ng-click="createComment(task.id, a.newComment)"></form>
+            <form>
+              <input type="text" ng-model="a.newComment" placeholder="Text">
+              <input class="btn btn-submit" type="button" value="Add new comment" ng-click="createComment(task.id, a.newComment)">
+            </form>
           </td>
         </tr> 
       </tbody>
-
     </table>
   </div>
 </div>
@@ -49,22 +56,16 @@
   <span >Add TODO List</span>
   </div>   
 </div>
-
 <div ng-show="showCreateProject">
-  <form>
-    <input type="text" ng-model="newProject.name" placeholder="Project name" require>
-    <p class="input-group">
-    <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="newProject.dateTime" is-open="isOpen"  />
+ <form class="form-inline" >
     <span class="input-group-btn">
+    <input type="text" class="form-control" ng-model="newProject.name" placeholder="Project name" require>
+    <input type="text" class="form-control" ng-disabled="true" datetime-picker="dd MMM yyyy HH:mm" ng-model="newProject.dateTime" is-open="isOpen"/>
         <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)">
         <i class="glyphicon glyphicon-calendar"></i>
         </button>
     </span>
-</p>
-    <input type="submit" ng-click='createProject()'>
-     
-  </form>    
+    <input type="submit" ng-click='createProject()'>   
+  </form>  
+
 </div>
-
-
-

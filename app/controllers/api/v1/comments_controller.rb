@@ -16,7 +16,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update
-    @comment.attach=params[:file]
+
     if @comment.update(comment_params)
       respond_to do |format|
         format.json{ render :json => @comment}
@@ -31,6 +31,13 @@ class Api::V1::CommentsController < ApplicationController
   private
   
   def comment_params
+    if params[:file]
+      params['comment']={}
+      puts params
+      params['comment']['attach']=params[:file]
+    end
+
+    params.require(:comment).permit(:text, :attach)      
 
   end
 
