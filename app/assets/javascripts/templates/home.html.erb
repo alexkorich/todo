@@ -12,7 +12,7 @@
           <div ng-show="project.showEdit()"></div>
         </div>
        <div class="bottom-headd headd">
-        <div style="float:left"><span class="glyphicon glyphicon-plus" style="float:left; font-size:20px; color:green"></span></div>
+        <div style="float:left; margin-top:4px; margin-right:5px"><span class="glyphicon glyphicon-plus" style="float:left; font-size:20px; color:green"></span></div>
           <form action="" class="form-inline" style="float:left; display:block">
             <div class="dropdown" style="float:left;width:190px;">
               <a class="dropdown-toggle my-toggle-select" id="dropdown{{$index}}" role="button" data-toggle="dropdown" data-target="#" href="">
@@ -31,18 +31,19 @@
       </div>
        </div>
 
-    <table class="table">
+    <table class="table" ui-sortable ng-model="project.tasks">
       <tbody ng-repeat="task in project.tasks" ng-cloak>
         <tr>
           <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
           <td class=""><div style="display:block; float:left" ng-cloak>{{task.name}}<span style="margin-left:5px;"class="label label-primary">due: {{task.deadline| date: "MM/dd/yyyy hh:mm"}}</span></div></td>
           <td class=""><span class="glyphicon glyphicon-chevron-down" ng-click="task.showComments =! task.showComments"></span></td>
+           <td class="myHandle">ss</td>
           <td class=""><span class="glyphicon glyphicon-pencil"></span></td>
           <td class=""><span class="glyphicon glyphicon-trash" ng-click="deleteTask(task.id)"></span></td>
         </tr>
         <tr ng-repeat="comment in task.comments" ng-show="task.showComments">
           <td></td>
-          <td class="center-block"><div style="float:left;">{{comment.text}} at {{comment.created_at|date: "MM/dd/yyyy h:mma"}}</div></td> 
+          <td class="center-block"><div style="float:left;">{{comment.text}} at {{comment.created_at|date: "MM/dd/yyyy h:mma"}}</div></td>
           <td><span class="glyphicon glyphicon-paperclip" ngf-select="upload($file, comment.id, task.id)"></span>
           <td><a  ng-show="comment.attach.url" href="{{comment.attach.url}}" target="_self">Download attachment</a></td>
           <td><span class="glyphicon glyphicon-trash" ng-click="deleteComment(comment.id)"></span></td>

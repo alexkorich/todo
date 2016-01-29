@@ -24,6 +24,8 @@ gem 'fog'
 gem 'devise'
 gem 'angular-rails-templates'
 
+gem 'jquery-ui-rails'
+
 gem 'cancancan', '~> 1.10'
 gem "haml-rails", "~> 0.9"
 gem 'carrierwave'

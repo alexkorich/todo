@@ -19,6 +19,9 @@
 //= require AngularDevise/lib/devise
 //= require angular-resource/angular-resource
 //= require ng-file-upload/ng-file-upload
+//= require jquery-ui
+//= require angular-ui-sortable/sortable
+
 //= require angular-animate/angular-animate
 //= require angular-bootstrap/ui-bootstrap-tpls
 //= require moment/moment.js

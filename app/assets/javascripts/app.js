@@ -1,4 +1,4 @@
-angular.module('todoList', ['Devise','templates','ngAnimate', 'ui.router','ui.bootstrap' ,'ngResource',
+angular.module('todoList', ['Devise','templates','ngAnimate', 'ui.router', 'ui.sortable','ui.bootstrap' ,'ngResource',
                             'ngFileUpload', 'ui.bootstrap.datetimepicker' ])
 .config([
   '$stateProvider',
