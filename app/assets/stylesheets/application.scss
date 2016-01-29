@@ -47,10 +47,17 @@ background-image: image-url('gradient-background.jpg')
   margin:0;
 }
 .headd{
+  width:100%;
   padding:10px;
 }
 .bottom-headd{
-  background-color: lightgrey;
+  width:100%;
+  background-color: #d0cdc4;
+  height:60%;
+}
+.top-headd{
+  width:100%;
+  height:40%;
 }
 .panel-primary{
   margin:0;
@@ -59,5 +66,5 @@ background-image: image-url('gradient-background.jpg')
 .dropdown-menu{
   position:absolute;
   color:black;
-  
+
 }

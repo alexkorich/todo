@@ -1,7 +1,7 @@
 <div ng-repeat="project in projects" ng-cloak style=" background-color:white; padding:0; margin-bottom:10px" class="container img-rounded">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <div class="top-headd headd" style="width:100%; height:50%">
+        <div class="top-headd headd">
           <div class="glyphicon glyphicon-calendar" style="display:block; float: left; font-size:16px;"></div>
           <div  style="display:block; float: left; width:600px;  font-size:16px;">
             <span class="project-name" >{{project.name}}</span>
@@ -11,7 +11,7 @@
           <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;" ng-click="deleteProject(project.id)"></span></div>
           <div ng-show="project.showEdit()"></div>
         </div>
-       <div class="bottom-headd headd" style="width:100%; height:50%; background-color:grey;">
+       <div class="bottom-headd headd">
         <div style="float:left"><span class="glyphicon glyphicon-plus" style="float:left; font-size:20px; color:green"></span></div>
           <form action="" class="form-inline" style="float:left; display:block">
             <div class="dropdown" style="float:left;width:190px;">

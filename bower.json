@@ -26,6 +26,7 @@
     "bootstrap-ui-datetime-picker": "~2.1.0",
     "angular-bootstrap": "~1.1.1",
     "angular-animate": "~1.4.9",
-    "moment": "~2.11.1"
+    "moment": "~2.11.1",
+    "angular-ui-sortable": "~0.13.4"
   }
 }
