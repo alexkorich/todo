@@ -17,15 +17,20 @@
           <span class="glyphicon glyphicon-plus"></span>
         </div>
         <form action="" class="form-inline" style="float:left; display:block">
-          <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:600px" ng-model="newTask.name">
-          <input type="button" value="Add task" class="btn btn-success" ng-click="createTask(project.id)">
+          <input type="text" class="form-control" ng-disabled="true" is-open="opened[$index]" datetime-picker="dd MMM yyyy HH:mm" ng-model="a.deadline" is-open="isOpen"/>
+        <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop, $index)">
+        <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+
+          <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:600px" ng-model="a.name">
+          <input type="button" value="Add task" class="btn btn-success" ng-click="createTask(a, project.id)">
         </form>
       </div>
     </div>
     <table class="table">
       <tbody ng-repeat="task in project.tasks" ng-cloak>
         <tr>
-          <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-change="toggleTask(task.id, task.done)"></td>
+          <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
           <td class=""><div style="display:block; float:left" ng-cloak>{{task.name}}</div></td>
           <td class=""><span class="glyphicon glyphicon-chevron-down" ng-click="task.showComments =! task.showComments"></span></td>
           <td class=""><span class="glyphicon glyphicon-pencil"></span></td>
@@ -64,8 +69,9 @@
         <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)">
         <i class="glyphicon glyphicon-calendar"></i>
         </button>
-    </span>
     <input type="submit" ng-click='createProject()'>   
+    </span>
+
   </form>  
 
 </div>

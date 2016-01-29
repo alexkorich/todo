@@ -1,7 +1,7 @@
 angular.module('todoList')
 .controller("MainCtrl", [
   '$scope', "Projects","Tasks", "Comments", 'Upload',
-   function($scope, Projects, Tasks, Comments, Upload, $http){
+   function($scope, Projects, Tasks, Comments, Upload, $http, $timeout){
   $scope.loadProjects = function() {
       Projects.query(function(data) {
         $scope.projects = data;
@@ -10,7 +10,7 @@ angular.module('todoList')
       });
     };
   
-
+      $scope.opened={}
       $scope.loadProjects();
       $scope.newTask={};
       $scope.test = 'Hello world!';
@@ -20,9 +20,13 @@ angular.module('todoList')
  
       $scope.isOpen = false;
 
-    $scope.openCalendar = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    $scope.openCalendar = function($event, prop, index) {
+      
+      $scope.opened[index] = true;
+  
+        console.log(prop)
+        $event.preventDefault();
+        $event.stopPropagation();
 
          $scope.isOpen = true;
     };
@@ -42,9 +46,9 @@ angular.module('todoList')
       };
 
 
-      $scope.createTask=function(id){
-        console.log(id);
-        Projects.newTask({id:id, task:{name:$scope.newTask.name}});
+      $scope.createTask=function(a, id){
+        console.log(a, id);
+        Projects.newTask({id:id, task:{name:a.name, deadline:a.deadline}});
        $scope.loadProjects()
       };
 
