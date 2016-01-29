@@ -20,6 +20,7 @@
 //= require angular-resource/angular-resource
 //= require ng-file-upload/ng-file-upload
 //= require jquery-ui
+//= require lodash/lodash
 //= require angular-ui-sortable/sortable
 
 //= require angular-animate/angular-animate

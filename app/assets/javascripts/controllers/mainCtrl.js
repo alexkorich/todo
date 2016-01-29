@@ -2,10 +2,10 @@ angular.module('todoList')
 .controller("MainCtrl", [
   '$scope', "Projects","Tasks", "Comments", 'Upload',
    function($scope, Projects, Tasks, Comments, Upload, $http, $timeout){
+    $scope.startSort={};
   $scope.loadProjects = function() {
       Projects.query(function(data) {
         $scope.projects = data;
-      console.log($scope.projects.each)
       });
     };
   
@@ -33,7 +33,18 @@ angular.module('todoList')
         Projects.delete({id:id});
         $scope.loadProjects()
       };
-
+      $scope.sortableOptions = {
+      stop: function(e, ui) {
+        console.log(ui.item.sortable.sourceModel==$scope.startSort)
+        console.log(ui.item.sortable.sourceModel)
+        
+      },
+      start: function(e, ui) {
+        var a=ui
+        $scope.startSort=angular.copy(a.item.sortable.sourceModel);
+        console.log($scope.startSort)
+      },
+    };
 
       $scope.createTask=function(a, id){
         console.log(a, id);

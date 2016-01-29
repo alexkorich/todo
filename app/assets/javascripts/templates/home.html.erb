@@ -31,7 +31,7 @@
       </div>
        </div>
 
-    <table class="table" ui-sortable ng-model="project.tasks">
+    <table class="table" ui-sortable="sortableOptions"ng-model="project.tasks">
       <tbody ng-repeat="task in project.tasks" ng-cloak>
         <tr>
           <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
