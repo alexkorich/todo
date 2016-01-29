@@ -17,7 +17,7 @@
             <div class="dropdown" style="float:left;width:190px;">
               <a class="dropdown-toggle my-toggle-select" id="dropdown{{$index}}" role="button" data-toggle="dropdown" data-target="#" href="">
                   <div class="input-append">
-                    <input type="text" class="form-control input-large" data-ng-model="a.deadline" style="width:190px"><span class="add-on"><i class="icon-calendar"></i></span>
+                    <input type="text" class="form-control input-large" placeholder="Select deadline" data-ng-model="a.deadline" style="width:190px"><span class="add-on"><i class="icon-calendar"></i></span>
                   </div>
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -49,9 +49,9 @@
         </tr>
         <tr ng-show="task.showComments">
           <td colspan="5">
-            <form>
-              <input type="text" ng-model="a.newComment" placeholder="Text">
-              <input class="btn btn-submit" type="button" value="Add new comment" ng-click="createComment(task.id, a.newComment)">
+            <form class="form-inline">
+              <input type="text" class="form-control" ng-model="a.newComment" placeholder="Text">
+              <input class="btn btn-submit " type="button" value="Add new comment" ng-click="createComment(task.id, a.newComment)">
             </form>
           </td>
         </tr> 
@@ -59,22 +59,29 @@
     </table>
     </div>
 </div>
-<div class="center-block btn btn-primary" style="width:150px" >
-  <div class="btn btn-primary" style="width:150px" ng-click='showCreateProject =!showCreateProject'>
+
+  <div class="center-block  btn btn-primary" style="width:150px" ng-click='showCreateProject =!showCreateProject'>
     <span class='glyphicon glyphicon-plus'></span>
   <span >Add TODO List</span>
   </div>   
-</div>
 
-<div ng-show="showCreateProject">
- <form class="form-inline" >
+
+<div ng-show="showCreateProject" class='center'>
+ <form class="form-inline center" >
     <span class="input-group-btn">
+    <div class="dropdown" style="float:left;width:190px; color:black">
+              <a class="dropdown-toggle my-toggle-select" id="dropdown-project" role="button" data-toggle="dropdown" data-target="#" href="">
+                  <div class="input-append">
+                    <input type="text" class="form-control input-large" placeholder="Select deadline"data-ng-model="newProject.deadline" style="width:190px"><span class="add-on"><i class="icon-calendar"></i></span>
+                  </div>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <datetimepicker data-ng-model="newProject.deadline"data-datetimepicker-config="{ dropdownSelector: '#dropdown-project' }"></datetimepicker>
+              </ul>
+            </div>
+
     <input type="text" class="form-control" ng-model="newProject.name" placeholder="Project name" require>
-    <input type="text" class="form-control" ng-disabled="true" datetime-picker="dd MMM yyyy HH:mm" ng-model="newProject.dateTime" is-open="isOpen"/>
-        <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)">
-        <i class="glyphicon glyphicon-calendar"></i>
-        </button>
-    <input type="submit" ng-click='createProject()'>   
+    <input type="submit" class="btn btn-success"ng-click='createProject()'>   
     </span>
 
   </form>  
