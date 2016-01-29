@@ -17,7 +17,7 @@
 
  @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import 'angular-bootstrap-datetimepicker/src/scss/datetimepicker';
 body {
 background-image: image-url('gradient-background.jpg')
 }
@@ -39,4 +39,25 @@ background-image: image-url('gradient-background.jpg')
 }
 .dropdown-menu{
   position:relative;
+}
+.panel-heading{
+  height:85px;
+  min-height: 40px;
+  padding:0;
+  margin:0;
+}
+.headd{
+  padding:10px;
+}
+.bottom-headd{
+  background-color: lightgrey;
+}
+.panel-primary{
+  margin:0;
+}
+
+.dropdown-menu{
+  position:absolute;
+  color:black;
+  
 }

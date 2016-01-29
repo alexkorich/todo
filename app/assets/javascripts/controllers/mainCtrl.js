@@ -6,7 +6,6 @@ angular.module('todoList')
       Projects.query(function(data) {
         $scope.projects = data;
       console.log($scope.projects.each)
-
       });
     };
   
@@ -20,16 +19,6 @@ angular.module('todoList')
  
       $scope.isOpen = false;
 
-    $scope.openCalendar = function($event, prop, index) {
-      
-      $scope.opened[index] = true;
-  
-        console.log(prop)
-        $event.preventDefault();
-        $event.stopPropagation();
-
-         $scope.isOpen = true;
-    };
       $scope.createProject=function(){
         Projects.save({project:{name:$scope.newProject.name, deadline:$scope.newProject.dateTime}})
        $scope.loadProjects()

@@ -12,6 +12,7 @@ module Todo
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+    config.assets.paths << Rails.root.join('node_modules')
     
     # Set Time.zone default to the specified zone and   z make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

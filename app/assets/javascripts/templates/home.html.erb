@@ -1,32 +1,36 @@
 <div ng-repeat="project in projects" ng-cloak style=" background-color:white; padding:0; margin-bottom:10px" class="container img-rounded">
-  <div>
-    <div class="center col-md-12 panel panel-primary" style="padding:0" >
-      <div class="center col-md-12 panel-heading">
-        <div class="glyphicon glyphicon-calendar" style="display:block; float: left; font-size:16px;"></div>
-        <div  style="display:block; float: left; width:600px;  font-size:16px;">
-          <span class="project-name" >{{project.name}}</span>
-          <span ng-show="project.deadline">due date:{{project.deadline| date:"MM/dd/yyyy 'at' h:mma"}}</span>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <div class="top-headd headd" style="width:100%; height:50%">
+          <div class="glyphicon glyphicon-calendar" style="display:block; float: left; font-size:16px;"></div>
+          <div  style="display:block; float: left; width:600px;  font-size:16px;">
+            <span class="project-name" >{{project.name}}</span>
+            <span ng-show="project.deadline">due date:{{project.deadline| date:"MM/dd/yyyy 'at' h:mma"}}</span>
+          </div>
+         <div ><span class="glyphicon glyphicon-pencil" style="display:block; float: left;  font-size:16px;" ng-click="project.showEdit=true"> </span></div>
+          <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;" ng-click="deleteProject(project.id)"></span></div>
+          <div ng-show="project.showEdit()"></div>
         </div>
-        
-        <div ><span class="glyphicon glyphicon-pencil" style="display:block; float: left;  font-size:16px;" ng-click="project.showEdit=true"> </span></div>
-        <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;" ng-click="deleteProject(project.id)"></span></div>
-        <div ng-show="project.showEdit()"></div>
-      </div>
-      <div class="panel-search col-md-12" style="background-color:lightgrey">
-        <div style="float:left; font-size:20px; color:green">
-          <span class="glyphicon glyphicon-plus"></span>
-        </div>
-        <form action="" class="form-inline" style="float:left; display:block">
-          <input type="text" class="form-control" ng-disabled="true" is-open="opened[$index]" datetime-picker="dd MMM yyyy HH:mm" ng-model="a.deadline" is-open="isOpen"/>
-        <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop, $index)">
-        <i class="glyphicon glyphicon-calendar"></i>
-        </button>
+       <div class="bottom-headd headd" style="width:100%; height:50%; background-color:grey;">
+        <div style="float:left"><span class="glyphicon glyphicon-plus" style="float:left; font-size:20px; color:green"></span></div>
+          <form action="" class="form-inline" style="float:left; display:block">
+            <div class="dropdown">
+              <a class="dropdown-toggle my-toggle-select" id="dropdown{{$index}}" role="button" data-toggle="dropdown" data-target="#" href="">
+                  <div class="input-append">
+                    <input type="text" class="input-large" data-ng-model="a.deadline"><span class="add-on"><i class="icon-calendar"></i></span>
+                  </div>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <datetimepicker data-ng-model="a.deadline"data-datetimepicker-config="{ dropdownSelector: '#dropdown{{$index}}' }"></datetimepicker>
+              </ul>
+            </div>
 
-          <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:600px" ng-model="a.name">
-          <input type="button" value="Add task" class="btn btn-success" ng-click="createTask(a, project.id)">
-        </form>
+            <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:300px" ng-model="a.name">
+            <input type="button" value="Add task" class="btn btn-success" ng-click="createTask(a, project.id)">
+          </form>
       </div>
-    </div>
+       </div>
+
     <table class="table">
       <tbody ng-repeat="task in project.tasks" ng-cloak>
         <tr>
@@ -53,7 +57,7 @@
         </tr> 
       </tbody>
     </table>
-  </div>
+    </div>
 </div>
 <div class="center-block btn btn-primary" style="width:150px" >
   <div class="btn btn-primary" style="width:150px" ng-click='showCreateProject =!showCreateProject'>
@@ -61,6 +65,7 @@
   <span >Add TODO List</span>
   </div>   
 </div>
+
 <div ng-show="showCreateProject">
  <form class="form-inline" >
     <span class="input-group-btn">
