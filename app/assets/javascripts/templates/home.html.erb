@@ -22,10 +22,10 @@
         </form>
       </div>
     </div>
-    <table class="table ">
+    <table class="table">
       <tbody ng-repeat="task in project.tasks" ng-cloak>
         <tr>
-          <td class=""><input type="checkbox" style="display:block; float:left"></td>
+          <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-change="toggleTask(task.id, task.done)"></td>
           <td class=""><div style="display:block; float:left" ng-cloak>{{task.name}}</div></td>
           <td class=""><span class="glyphicon glyphicon-chevron-down" ng-click="task.showComments =! task.showComments"></span></td>
           <td class=""><span class="glyphicon glyphicon-pencil"></span></td>

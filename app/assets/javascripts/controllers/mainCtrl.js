@@ -53,7 +53,12 @@ angular.module('todoList')
       //   Tasks.delete({id:id});
       //  $scope.loadProjects()
       // }
-
+      $scope.toggleTask=function(id, done){
+        Tasks.update({id:id, task:{done:done}}, function(obj, getResponseHeaders){
+        console.log(obj);
+        $scope.loadProjects();
+        })
+      };
 
        $scope.deleteTask=function(id){
         console.log(id);
