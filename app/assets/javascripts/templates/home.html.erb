@@ -35,7 +35,7 @@
       <tbody ng-repeat="task in project.tasks" ng-cloak>
         <tr>
           <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
-          <td class=""><div style="display:block; float:left" ng-cloak>{{task.name}}</div></td>
+          <td class=""><div style="display:block; float:left" ng-cloak>{{task.name}}<span style="margin-left:5px;"class="label label-primary">due: {{task.deadline| date: "MM/dd/yyyy hh:mm"}}</span></div></td>
           <td class=""><span class="glyphicon glyphicon-chevron-down" ng-click="task.showComments =! task.showComments"></span></td>
           <td class=""><span class="glyphicon glyphicon-pencil"></span></td>
           <td class=""><span class="glyphicon glyphicon-trash" ng-click="deleteTask(task.id)"></span></td>
