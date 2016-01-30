@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'todo'
 set :repo_url, 'git@github.com:alexkorich/todo.git'
-set :branch, :tokenless
+set :branch, :master
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
