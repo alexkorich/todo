@@ -8,9 +8,11 @@
     <meta charset="UTF-8">
   </head>
 <body ng-app="todoList">
+<div class="wrapper">
   <div ng-include="'nav.html'" class="container"></div>
-
-  <div ui-view></div>
+  <div ui-view  autoscroll="false"></div>
+  <div class="push"></div>
+</div>
   <footer class="footer">
     <div class="col-md-4">
       <a href="mailto:alex.korichkovskiy@gmail.com"  style:"font-size:12px; color:white">alex.korichkovskiy@gmail.com</a>

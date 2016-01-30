@@ -22,7 +22,7 @@ class Api::V1::ProjectsController < ApplicationController
 	end
 
 	def update
-		if @project.update(todo_params)
+		if @project.update(project_params)
 			respond_to do |format|
 				format.json{ render :json => @project}
 			end

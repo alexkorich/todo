@@ -36,14 +36,14 @@ angular.module('todoList')
       };
   
     $scope.createProject=function(){
-      Projects.save({project:{name:$scope.newProject.name, deadline:$scope.newProject.dateTime}});
+      Projects.save({project:{name:$scope.newProject.name, deadline:$scope.newProject.deadline}});
       $scope.newProject={}
       $scope.isOpen = false;
       $scope.loadProjects()
       };
 
-    $scope.updateProject=function(name, deadline){
-      Projects.save({project:{name:$scope.newProject.name, deadline:$scope.newProject.dateTime}});
+    $scope.updateProject=function(a){
+      Projects.update({id:a.id, project:{name:a.name, deadline:a.deadline}});
       $scope.loadProjects();
       };
 
