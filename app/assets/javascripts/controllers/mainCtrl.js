@@ -33,17 +33,22 @@ angular.module('todoList')
         Projects.delete({id:id});
         $scope.loadProjects()
       };
+
       $scope.sortableOptions = {
       stop: function(e, ui) {
-        console.log(ui.item.sortable.sourceModel==$scope.startSort)
-        console.log(ui.item.sortable.sourceModel)
-        
+        console.log((ui.item.sortable.sourceModel))
+        var a= findDiff($scope.startSort, ui.item.sortable.sourceModel)
+        _.map(a, function(k) {
+          Tasks.update({id: k.id, task:{position:k.position}})
+        });
+      $scope.loadProjects()
       },
       start: function(e, ui) {
         var a=ui
-        // $scope.startSort=angular.copy(a.item.sortable.sourceModel);
+        $scope.startSort=angular.copy(a.item.sortable.sourceModel);
         console.log($scope.startSort)
       },
+            axis: 'y'
     };
 
       $scope.createTask=function(a, id){
@@ -98,5 +103,19 @@ angular.module('todoList')
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
     };
+
+   function findDiff(arr1, arr2){
+    var length=arr1.length
+    var i=0
+    var a=[]
+    for (i; i<length; i++){
+      console.log(i)
+      if (arr1[i].id!=arr2[i].id){
+        a.push({id:arr2[i].id, position:i})
+      }
+     }
+    return a
+   }
+
 
     }]);

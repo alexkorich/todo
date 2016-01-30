@@ -3,9 +3,9 @@
 ##Technologies:
 
 * Frontend:                     AngularJS
-* Angular modules:              [angular-devise](https://github.com/cloudspace/angular_devise) ,templates, ui.router, ngResource,ngFileUpload
+* Angular modules:              [angular-devise](https://github.com/cloudspace/angular_devise), templates, ui.router, ngResource,ngFileUpload
 * Server:                       Ruby on Rails 
-* Gems:                         cancancan, devise, carrierwave, mongoid, capistrano  
+* Gems:                         cancancan, devise, carrierwave, capistrano  
 * Database:                     Postgres
 * CSS :                         Bootstrap Twitter
 * Backend tests:                Rspec
