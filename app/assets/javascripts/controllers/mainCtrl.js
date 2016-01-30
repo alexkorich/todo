@@ -36,14 +36,15 @@ angular.module('todoList')
       };
   
     $scope.createProject=function(){
-      Projects.save({project:{name:$scope.newProject.name, deadline:$scope.newProject.deadline}});
+      console.log($scope.newProject)
+      Projects.save({project:{name:$scope.newProject.name, deadline: new Date($scope.newProject.deadline)}});
       $scope.newProject={}
       $scope.isOpen = false;
       $scope.loadProjects()
       };
 
     $scope.updateProject=function(a){
-      Projects.update({id:a.id, project:{name:a.name, deadline:a.deadline}});
+      Projects.update({id:a.id, project:{name:a.name, deadline: new Date (a.deadline)}});
       $scope.loadProjects();
       };
 
@@ -54,13 +55,13 @@ angular.module('todoList')
 
     $scope.createTask=function(a, id){
       console.log(a, id);
-      Projects.newTask({id:id, task:{name:a.name, deadline:a.deadline}});
+      Projects.newTask({id:id, task:{name:a.name, deadline: new Date (a.deadline)}});
       $scope.loadProjects();
       };
 
-    $scope.updateTask=function(id){
-      console.log(id);
-      Tasks.delete({id:id});
+    $scope.updateTask=function(task){
+      
+      Tasks.update({id:task.id, task:{name:task.name, deadline: new Date (task.deadline)}});
       $scope.loadProjects()
      }
 

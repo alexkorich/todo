@@ -5,13 +5,13 @@
         <span class="glyphicon glyphicon-calendar"></span>
           <div ng-show="!project.showEdit" style="display:block; float: left; width:600px;  font-size:16px;">
             <span class="project-name" >{{::project.name}}</span>
-            <span ng-if="project.deadline">due date:{{::project.deadline| date:"MM/dd/yyyy 'at' h:mma"}}</span>
+            <span ng-if="project.deadline">due date:{{::project.deadline| date:"MM/dd/yyyy 'at' HH:mm"}}</span>
           </div>
           <div ng-show="project.showEdit" class="project-editor"> 
             <form class="form-inline" style="display:block; float:left;">
               <span class="input-group-btn">
-              <input class="form-control" datetime-picker ng-model="project.deadline" placeholder='Select deadline'/>
-              <input type="text" class="form-control" ng-model="project.name" placeholder="Project name" require>
+              <input class="form-control input-sm" datetime-picker ng-model="project.deadline"  date-format="yyyy-MM-dd HH:mm:ss" placeholder='Select deadline'  readonly/>
+              <input type="text" class="form-control input-sm" ng-model="project.name" placeholder="Project name" require>
               <input type="submit" class="btn btn-success"ng-click='updateProject(project)' value="Update project">   
               </span>
             </form>  
@@ -22,7 +22,7 @@
        <div class="bottom-headd headd">
         <div class='glyphicon-plus-wrap'><span class="glyphicon glyphicon-plus glyphicon-plus-project"></span></div>
           <form action="" class="form-inline" style="float:left; display:block">
-             <input type='text' class="form-control" datetime-picker ng-model="a.deadline" placeholder='Select deadline'/>
+             <input type='text' class="form-control" datetime-picker   date-format="yyyy-MM-dd HH:mm:ss" ng-model="a.deadline" placeholder='Select deadline'  readonly/>
 
             <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:300px" ng-model="a.name">
             <input type="button" value="Add task" class="btn btn-success" ng-click="createTask(a, project.id)">
@@ -33,10 +33,20 @@
       <tbody ng-repeat="task in project.tasks" ng-cloak>
         <tr> 
           <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
-          <td class=""><div style="display:block; float:left" ng-cloak>{{::task.name}}<span style="margin-left:5px;"class="label label-primary">due: {{::task.deadline| date: "MM/dd/yyyy hh:mm"}}</span></div></td>
+          <td class="">
+          <div ng-show="!task.showEditor"><div style="display:block; float:left" ng-cloak>{{::task.name}}
+            <span style="margin-left:5px;"class="label label-primary">due: {{::task.deadline| date: "MM/dd/yyyy HH:mm"}}</span></div></div>
+          <div ng-show="task.showEditor">
+              <input type='text' class="form-control input-sm" datetime-picker   date-format="yyyy-MM-dd HH:mm:ss" ng-model="task.deadline" placeholder='Select deadline' readonly/>
+            <input type="text" placeholder="Task message " class="form-control" style="width:300px" ng-model="task.name">
+            <input type="button" value="Update task" class="btn btn-success" ng-click="updateTask(task)">
+
+
+          </div>
+            
+          </td>
           <td class=""><span class="glyphicon glyphicon-chevron-down" ng-click="task.showComments =! task.showComments"></span></td>
-           <td class="myHandle">ss</td>
-          <td class=""><span class="glyphicon glyphicon-pencil"></span></td>
+          <td class=""><span class="glyphicon glyphicon-pencil"  ng-click="task.showEditor =! task.showEditor"></span></td>
           <td class=""><span class="glyphicon glyphicon-trash" ng-click="deleteTask(task.id)"></span></td>
         </tr>
         <tr ng-repeat="comment in task.comments" ng-if="task.showComments">
@@ -66,7 +76,7 @@
 <div ng-show="showCreateProject" class='center'>
  <form class="form-inline center" >
     <span class="input-group-btn">
-    <input class="form-control" datetime-picker ng-model="newProject.deadline" placeholder='Select deadline'/>
+    <input class="form-control" datetime-picker ng-model="newProject.deadline" date-format="yyyy-MM-dd HH:mm:ss" placeholder='Select deadline' readonly/>
     <input type="text" class="form-control" ng-model="newProject.name" placeholder="Project name" require>
     <input type="submit" class="btn btn-success"ng-click='createProject()'>   
     </span>
