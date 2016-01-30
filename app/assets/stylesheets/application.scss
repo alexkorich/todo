@@ -18,6 +18,8 @@
  @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'angular-bootstrap-datetimepicker/src/scss/datetimepicker';
+@import  'angular-loading-bar/src/loading-bar.css';
+
 body {
 background-image: image-url('gradient-background.jpg')
 }

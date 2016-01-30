@@ -45,7 +45,7 @@
           <td></td>
           <td class="center-block"><div style="float:left;">{{comment.text}} at {{comment.created_at|date: "MM/dd/yyyy h:mma"}}</div></td>
           <td><span class="glyphicon glyphicon-paperclip" ngf-select="upload($file, comment.id, task.id)"></span>
-          <td><a  ng-show="comment.attach.url" href="{{comment.attach.url}}" target="_self">Download attachment</a></td>
+          <td><a  ng-show="comment.attach.url" href="{{comment.attach.url}}" target="_blank">Download attachment</a></td>
           <td><span class="glyphicon glyphicon-trash" ng-click="deleteComment(comment.id)"></span></td>
         </tr>
         <tr ng-show="task.showComments">

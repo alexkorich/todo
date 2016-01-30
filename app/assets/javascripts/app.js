@@ -1,4 +1,4 @@
-angular.module('todoList', ['Devise','templates','ngAnimate', 'ui.router', 'ui.sortable','ui.bootstrap' ,'ngResource',
+angular.module('todoList', ['Devise','templates', 'angular-loading-bar', 'ngAnimate', 'ui.router', 'ui.sortable','ui.bootstrap' ,'ngResource',
                             'ngFileUpload', 'ui.bootstrap.datetimepicker' ])
 .config([
   '$stateProvider',
@@ -33,4 +33,6 @@ angular.module('todoList', ['Devise','templates','ngAnimate', 'ui.router', 'ui.s
           }]
         });    
       $urlRouterProvider.otherwise('login');
-        }]);
+        }]).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeBar = true;
+  }])

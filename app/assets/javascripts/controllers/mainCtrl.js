@@ -41,7 +41,7 @@ angular.module('todoList')
       },
       start: function(e, ui) {
         var a=ui
-        $scope.startSort=angular.copy(a.item.sortable.sourceModel);
+        // $scope.startSort=angular.copy(a.item.sortable.sourceModel);
         console.log($scope.startSort)
       },
     };

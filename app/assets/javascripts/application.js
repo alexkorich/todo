@@ -22,7 +22,7 @@
 //= require jquery-ui
 //= require lodash/lodash
 //= require angular-ui-sortable/sortable
-
+//= require angular-loading-bar/src/loading-bar.js
 //= require angular-animate/angular-animate
 //= require angular-bootstrap/ui-bootstrap-tpls
 //= require moment/moment.js

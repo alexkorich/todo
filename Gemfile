@@ -7,20 +7,14 @@ gem 'sprockets', '2.12.3'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-# Use jquery as the JavaScript library
+
+
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+
 gem 'pg'
 gem 'angular_csrf'
-gem 'fog'
-
 gem 'devise'
 gem 'angular-rails-templates'
 
@@ -36,6 +30,8 @@ gem "omniauth-github"
 gem 'puma'
 
 group :development do
+
+  gem "better_errors"
   gem 'capistrano'
   gem 'capistrano3-puma'
   gem 'capistrano-rails', require: false
@@ -50,7 +46,6 @@ group :development, :test do
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
   gem 'faker'
