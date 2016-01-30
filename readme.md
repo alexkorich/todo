@@ -6,7 +6,7 @@
 * Angular modules:              [angular-devise](https://github.com/cloudspace/angular_devise) ,templates, ui.router, ngResource,ngFileUpload
 * Server:                       Ruby on Rails 
 * Gems:                         cancancan, devise, carrierwave, mongoid, capistrano  
-* Database:                     MongoDB + Mongoid
+* Database:                     Postgres
 * CSS :                         Bootstrap Twitter
 * Backend tests:                Rspec
 * Frontend test:                Karma
