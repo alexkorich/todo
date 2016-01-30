@@ -3,7 +3,7 @@
       <div class="panel-heading">
         <div class="top-headd headd">
         <span class="glyphicon glyphicon-calendar"></span>
-          <div ng-show="!project.showEdit" style="display:block; float: left; width:600px;  font-size:16px;">
+          <div ng-show="!project.showEdit"  class="project-show">
             <span class="project-name" >{{::project.name}}</span>
             <span ng-if="project.deadline">due date:{{::project.deadline| date:"MM/dd/yyyy 'at' HH:mm"}}</span>
           </div>
@@ -32,16 +32,17 @@
     <table class="table" ui-sortable="sortableOptions" ng-model="project.tasks">
       <tbody ng-repeat="task in project.tasks" ng-cloak>
         <tr> 
-          <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
+          <td style="width:20px"><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
           <td class="">
-          <div ng-show="!task.showEditor"><div style="display:block; float:left" ng-cloak>{{::task.name}}
+          <div ng-show="!task.showEditor" class="task-show"><div style="display:block; float:left" ng-cloak>{{::task.name}}
             <span style="margin-left:5px;"class="label label-primary">due: {{::task.deadline| date: "MM/dd/yyyy HH:mm"}}</span></div></div>
-          <div ng-show="task.showEditor">
-              <input type='text' class="form-control input-sm" datetime-picker   date-format="yyyy-MM-dd HH:mm:ss" ng-model="task.deadline" placeholder='Select deadline' readonly/>
-            <input type="text" placeholder="Task message " class="form-control" style="width:300px" ng-model="task.name">
-            <input type="button" value="Update task" class="btn btn-success" ng-click="updateTask(task)">
+          <div ng-show="task.showEditor" class="task-edit">
+           <form class="form-inline" >
+              <input type='text' class="form-control input-sm" style="width:170px" datetime-picker   date-format="yyyy-MM-dd HH:mm:ss" ng-model="task.deadline" placeholder='Select deadline' readonly/>
+            <input type="text" placeholder="Task message " class="form-control input-sm" style="width:200px" ng-model="task.name">
+            <input type="button" value="Update task" class="btn btn-success btn-sm" ng-click="updateTask(task)">
 
-
+          </form>
           </div>
             
           </td>
