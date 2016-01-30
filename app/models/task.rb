@@ -1,5 +1,10 @@
 class Task < ActiveRecord::Base
   has_many :comments
-  belongs_to :task
+  belongs_to :project
+  before_create :set_position
+  def set_position
+    a= self.project.tasks.order("position DESC").first ? self.project.tasks.order("position DESC").first.position : -1
+    self.position=a+1
+  end
 
 end

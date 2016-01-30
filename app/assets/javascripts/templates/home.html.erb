@@ -1,54 +1,44 @@
-<div ng-repeat="project in projects" ng-cloak style=" background-color:white; padding:0; margin-bottom:10px" class="container img-rounded">
+<div ng-repeat="project in projects" class="container img-rounded" ng-cloak >
     <div class="panel panel-primary">
       <div class="panel-heading">
         <div class="top-headd headd">
-          <div class="glyphicon glyphicon-calendar" style="display:block; float: left; font-size:16px;"></div>
+        <span class="glyphicon glyphicon-calendar"></span>
           <div  style="display:block; float: left; width:600px;  font-size:16px;">
-            <span class="project-name" >{{project.name}}</span>
-            <span ng-show="project.deadline">due date:{{project.deadline| date:"MM/dd/yyyy 'at' h:mma"}}</span>
+            <span class="project-name" >{{::project.name}}</span>
+            <span ng-if="project.deadline">due date:{{::project.deadline| date:"MM/dd/yyyy 'at' h:mma"}}</span>
           </div>
-         <div ><span class="glyphicon glyphicon-pencil" style="display:block; float: left;  font-size:16px;" ng-click="project.showEdit=true"> </span></div>
-          <div><span class="glyphicon glyphicon-trash" style="display:block; float: left;  font-size:16px;" ng-click="deleteProject(project.id)"></span></div>
-          <div ng-show="project.showEdit()"></div>
+         <span class="glyphicon glyphicon-pencil" ng-click="lol(this)"> </span>
+         <span class="glyphicon glyphicon-trash" ng-click="deleteProject(project.id)"></span>
+          <div ng-if="project.showEdit()"></div>
         </div>
        <div class="bottom-headd headd">
-        <div style="float:left; margin-top:4px; margin-right:5px"><span class="glyphicon glyphicon-plus" style="float:left; font-size:20px; color:green"></span></div>
+        <div class='glyphicon-plus-wrap'><span class="glyphicon glyphicon-plus glyphicon-plus-project"></span></div>
           <form action="" class="form-inline" style="float:left; display:block">
-            <div class="dropdown" style="float:left;width:190px;">
-              <a class="dropdown-toggle my-toggle-select" id="dropdown{{$index}}" role="button" data-toggle="dropdown" data-target="#" href="">
-                  <div class="input-append">
-                    <input type="text" class="form-control input-large" placeholder="Select deadline" data-ng-model="a.deadline" style="width:190px"><span class="add-on"><i class="icon-calendar"></i></span>
-                  </div>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                  <datetimepicker data-ng-model="a.deadline"data-datetimepicker-config="{ dropdownSelector: '#dropdown{{$index}}' }"></datetimepicker>
-              </ul>
-            </div>
+             <input type='text' class="form-control" datetime-picker ng-model="a.deadline" placeholder='Select deadline'/>
 
             <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:300px" ng-model="a.name">
             <input type="button" value="Add task" class="btn btn-success" ng-click="createTask(a, project.id)">
           </form>
       </div>
        </div>
-
-    <table class="table" ui-sortable="sortableOptions"ng-model="project.tasks">
+    <table class="table" ui-sortable="sortableOptions" ng-model="project.tasks">
       <tbody ng-repeat="task in project.tasks" ng-cloak>
-        <tr>
+        <tr> 
           <td class=""><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
-          <td class=""><div style="display:block; float:left" ng-cloak>{{task.name}}{{task.position}}<span style="margin-left:5px;"class="label label-primary">due: {{task.deadline| date: "MM/dd/yyyy hh:mm"}}</span></div></td>
+          <td class=""><div style="display:block; float:left" ng-cloak>{{::task.name}}<span style="margin-left:5px;"class="label label-primary">due: {{::task.deadline| date: "MM/dd/yyyy hh:mm"}}</span></div></td>
           <td class=""><span class="glyphicon glyphicon-chevron-down" ng-click="task.showComments =! task.showComments"></span></td>
            <td class="myHandle">ss</td>
           <td class=""><span class="glyphicon glyphicon-pencil"></span></td>
           <td class=""><span class="glyphicon glyphicon-trash" ng-click="deleteTask(task.id)"></span></td>
         </tr>
-        <tr ng-repeat="comment in task.comments" ng-show="task.showComments">
+        <tr ng-repeat="comment in task.comments" ng-if="task.showComments">
           <td></td>
-          <td class="center-block"><div style="float:left;">{{comment.text}} at {{comment.created_at|date: "MM/dd/yyyy h:mma"}}</div></td>
+          <td class="center-block"><div style="float:left;">{{::comment.text}} at {{::comment.created_at|date: "MM/dd/yyyy h:mma"}}</div></td>
           <td><span class="glyphicon glyphicon-paperclip" ngf-select="upload($file, comment.id, task.id)"></span>
-          <td><a  ng-show="comment.attach.url" href="{{comment.attach.url}}" target="_blank">Download attachment</a></td>
+          <td><a  ng-if="comment.attach.url" href="{{comment.attach.url}}" target="_blank">Download attachment</a></td>
           <td><span class="glyphicon glyphicon-trash" ng-click="deleteComment(comment.id)"></span></td>
         </tr>
-        <tr ng-show="task.showComments">
+        <tr ng-if="task.showComments">
           <td colspan="5">
             <form class="form-inline">
               <input type="text" class="form-control" ng-model="a.newComment" placeholder="Text">
@@ -60,31 +50,17 @@
     </table>
     </div>
 </div>
-
   <div class="center-block  btn btn-primary" style="width:150px" ng-click='showCreateProject =!showCreateProject'>
     <span class='glyphicon glyphicon-plus'></span>
   <span >Add TODO List</span>
   </div>   
 
-
 <div ng-show="showCreateProject" class='center'>
  <form class="form-inline center" >
     <span class="input-group-btn">
-    <div class="dropdown" style="float:left;width:190px; color:black">
-              <a class="dropdown-toggle my-toggle-select" id="dropdown-project" role="button" data-toggle="dropdown" data-target="#" href="">
-                  <div class="input-append">
-                    <input type="text" class="form-control input-large" placeholder="Select deadline"data-ng-model="newProject.deadline" style="width:190px"><span class="add-on"><i class="icon-calendar"></i></span>
-                  </div>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                  <datetimepicker data-ng-model="newProject.deadline"data-datetimepicker-config="{ dropdownSelector: '#dropdown-project' }"></datetimepicker>
-              </ul>
-            </div>
-
+  <input type='text' class="form-control" datetime-picker ng-model="newProject.deadline" placeholder='Select deadline'/>
     <input type="text" class="form-control" ng-model="newProject.name" placeholder="Project name" require>
     <input type="submit" class="btn btn-success"ng-click='createProject()'>   
     </span>
-
   </form>  
-
 </div>

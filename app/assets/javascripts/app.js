@@ -1,5 +1,5 @@
-angular.module('todoList', ['Devise','templates', 'angular-loading-bar', 'ngAnimate', 'ui.router', 'ui.sortable','ui.bootstrap' ,'ngResource',
-                            'ngFileUpload', 'ui.bootstrap.datetimepicker' ])
+angular.module('todoList', ['Devise','templates', 'angular-loading-bar', 'ui.router', 'ui.sortable' ,'ngResource',
+                            'ngFileUpload', 'angularjs-datetime-picker' ])
 .config([
   '$stateProvider',
   '$urlRouterProvider',
