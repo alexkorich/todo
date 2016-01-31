@@ -17,8 +17,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import  'angularjs-datetime-picker/angularjs-datetime-picker.css';
-@import  'angular-loading-bar/src/loading-bar.css';
+@import  'angularjs-datetime-picker/angularjs-datetime-picker';
+@import  'angular-loading-bar/src/loading-bar';
 
 body {
 background-image: image-url('gradient-background.jpg')
