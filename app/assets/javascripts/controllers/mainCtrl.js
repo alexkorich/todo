@@ -32,6 +32,7 @@ angular.module('todoList')
       Projects.query(function(data) {
         $scope.projects = data;
         console.log('Loaded!');
+        $scope.$apply()
         });
       };
   
