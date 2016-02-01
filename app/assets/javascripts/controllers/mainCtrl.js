@@ -30,9 +30,10 @@ angular.module('todoList')
       }
     $scope.loadProjects = function() {
       Projects.query(function(data) {
+        $timeout(function() {
         $scope.projects = data;
         console.log('Loaded!');
-        $scope.$apply()
+      }
         });
       };
   
