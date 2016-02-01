@@ -1,14 +1,14 @@
 'use strict'
 angular.module('todoList')
 .controller("MainCtrl", [
-  '$scope', "Projects","Tasks", "Comments", 'Upload',
-  function($scope, Projects, Tasks, Comments, Upload, $http, $timeout){
+  '$scope', '$timeout',"Projects","Tasks", "Comments", 'Upload',
+  function($scope, $timeout, Projects, Tasks, Comments, Upload, $http){
       
     $scope.startSort={};
     $scope.newTask={};
     $scope.newProject={};
     $scope.isOpen = false;
-
+    console.log($timeout)
     $scope.sortableOptions = {
       stop: function(e, ui) {
         console.log((ui.item.sortable.sourceModel));
