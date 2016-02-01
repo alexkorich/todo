@@ -1,20 +1,23 @@
 class Api::V1::TasksController < ApplicationController
 
-  authorize_resource      
+  authorize_resource  
   skip_before_filter :verify_authenticity_token
   respond_to :json
   before_action :set_task, only: [:update, :destroy]
   
- 
  def create
   @project=Project.find(params[:project_id])
   @task=Task.new(task_params)
   @project.tasks<<@task
   if @project.save
     respond_to do |format|
-      format.json{ render :json => @project}
+      format.json{ render :json => @task}
     end
-  end
+    else
+      respond_to do |format|
+      format.json{ render :json => @task.errors}
+    end
+    end
   end
 
   def update
@@ -22,6 +25,8 @@ class Api::V1::TasksController < ApplicationController
       respond_to do |format|
         format.json{ render :json => @task}
       end
+    else
+       render json: @task
     end
   end
 

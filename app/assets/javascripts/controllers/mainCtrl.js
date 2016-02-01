@@ -55,7 +55,7 @@ angular.module('todoList')
 
     $scope.createTask=function(a, id){
       console.log(a, id);
-      Projects.newTask({id:id, task:{name:a.name, deadline: new Date (a.deadline)}});
+      Projects.newTask({id:id, task:{name:a.name, done: false, deadline: new Date (a.deadline)}});
       $scope.loadProjects();
       };
 

@@ -21,7 +21,12 @@ class ApplicationController < ActionController::Base
   def verified_request?
     super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
   end
-rescue_from CanCan::AccessDenied do |exception|
-   respond_with exception.message
+
+ rescue_from CanCan::AccessDenied do |exception|
+    render json: {error: exception.message}, status: :forbidden
   end
+  rescue_from ActionController::ParameterMissing do |exception|
+    render json: {error: exception.message}, status: 422
+  end
+  
 end

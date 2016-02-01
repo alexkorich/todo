@@ -20,9 +20,12 @@
 //= require ng-file-upload/ng-file-upload
 //= require jquery-ui
 //= require lodash/lodash
+//= require angular-animate/angular-animate.js
+//= require angular-toastr/dist/angular-toastr.tpls.js
+
 //= require angular-ui-sortable/sortable
-//= require angular-loading-bar/src/loading-bar.js
-//= require angularjs-datetime-picker/angularjs-datetime-picker.js
+//= require angular-loading-bar/src/loading-bar
+//= require angularjs-datetime-picker/angularjs-datetime-picker
 //= require app
 //= require_tree ./controllers
 //= require_tree ./templates

@@ -28,6 +28,8 @@
     "angular-animate": "~1.4.9",
     "moment": "~2.11.1",
     "angular-ui-sortable": "~0.13.4",
-    "angular-loading-bar": "~0.8.0"
+    "angular-loading-bar": "~0.8.0",
+    "AngularJS-Toaster": "angularjs-toaster#^1.0.0",
+    "angular-toastr": "^1.7.0"
   }
 }

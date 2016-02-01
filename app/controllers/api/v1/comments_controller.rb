@@ -7,20 +7,22 @@ class Api::V1::CommentsController < ApplicationController
 
   def create 
     @task = Task.find(params[:task_id])
-    @task.comments<<Comment.new(text:params[:text])
+    @task.comments<<Comment.new(comment_params)
     if @task.save
       respond_to do |format|
         format.json{ render :json => @task}
       end
+    else respond_with @task
     end
   end
 
   def update
-
     if @comment.update(comment_params)
       respond_to do |format|
         format.json{ render :json => @comment}
       end
+    else
+      respond_with @comment
     end
   end
 
@@ -37,7 +39,7 @@ class Api::V1::CommentsController < ApplicationController
       params['comment']['attach']=params[:file]
     end
 
-    params.require(:comment).permit(:text, :attach)      
+    params.require(:comment).permit(:text, :attach, :author)      
 
   end
 
