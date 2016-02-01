@@ -33,7 +33,7 @@ angular.module('todoList')
         $timeout(function() {
         $scope.projects = data;
         console.log('Loaded!');
-      }
+      })
         });
       };
   
