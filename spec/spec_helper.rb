@@ -1,19 +1,21 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+
 require 'rspec/rails'
 require 'shoulda/matchers'
-
-
-
+require 'capybara/rspec'
+require 'cancan/matchers'
+require 'capybara/poltergeist'
 
 
 RSpec.configure do |config|
   config.include Capybara::DSL
+
+
+  Capybara.javascript_driver = :poltergeist
+
   config.use_transactional_fixtures = false
  
-  config.before(:suite) do
+  config.before(:suite , js: true) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
   end
@@ -49,6 +51,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
  
+include ActionDispatch::TestProcess
+include Warden::Test::Helpers
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

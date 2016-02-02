@@ -1,21 +1,20 @@
-RSpec.feature "Projects", type: :feature, js: true  do
-  given!(:user) { FactoryGirl.create(:user) }
- 
- background do
+feature "Projects", type: :feature, js: true  do
+  given(:user) { FactoryGirl.create(:user) }
 
-    visit '/'
-    fill_in 'Email',    with: user.email
-    fill_in 'Password', with: user.password
-    puts user.password
-    click_button 'Log In'
+given!(:project) { FactoryGirl.create(:project, user: user, name: 'test project') }
+  
+  before do
+    login_as user, scope: :user
+    visit '/#/'
   end
+
 
   scenario 'Add a new project', js: true do
     find('.showCreateProject', visible: false).click
     fill_in 'Project name', with: 'Meow project!'
-    fill_in "Select deadline", with: '2016-02-11 21:40:00'
-
-    click_button 'Submit'
+   find('#time-select').click
+   first(".selectable").click
+    click_button 'Create project'
     expect(page).to have_content 'Meow project!'
   end
 end
