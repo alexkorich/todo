@@ -12,7 +12,8 @@ class Api::V1::CommentsController < ApplicationController
       respond_to do |format|
         format.json{ render :json => @task}
       end
-    else respond_with @task
+    else 
+      render json: @task.errors, status: 422
     end
   end
 

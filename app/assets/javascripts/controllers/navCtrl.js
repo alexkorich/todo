@@ -11,8 +11,7 @@ function($scope, Auth, $state, toastr){
   });
   $scope.$on('devise:login', function (e, user){
     $scope.user = user;
-    console.log(e)
-    console.log(user)
+  
     toastr.success("Hello, " +user.username+"!");
   });
   $scope.$on('devise:logout', function (e, user){

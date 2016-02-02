@@ -1,14 +1,13 @@
 'use strict'
 angular.module('todoList')
 .controller("MainCtrl", [
-  '$scope', '$timeout',"Projects","Tasks", "Comments", 'Upload',
-  function($scope, $timeout, Projects, Tasks, Comments, Upload, $http){
-      
+  '$scope', '$timeout',"Projects","Tasks", "Comments", 'Upload','toastr',
+  function($scope, $timeout, Projects, Tasks, Comments, Upload, toastr, $http ){
+      console.log(toastr)
     $scope.startSort={};
     $scope.newTask={};
     $scope.newProject={};
     $scope.isOpen = false;
-    console.log($timeout)
     $scope.sortableOptions = {
       stop: function(e, ui) {
         console.log((ui.item.sortable.sourceModel));
@@ -33,16 +32,23 @@ angular.module('todoList')
         $timeout(function() {
         $scope.projects = data;
         console.log('Loaded!');
-      })
+      }), 10
         });
       };
   
     $scope.createProject=function(){
       console.log($scope.newProject)
-      Projects.save({project:{name:$scope.newProject.name, deadline: new Date($scope.newProject.deadline)}});
-      $scope.newProject={}
-      $scope.isOpen = false;
-      $scope.loadProjects()
+      Projects.save({}, {project:{name:$scope.newProject.name, deadline: new Date($scope.newProject.deadline)}},
+        function (data) {
+          $scope.newProject={}
+          toastr.success("Object created!")
+          $scope.isOpen = false;
+          $scope.loadProjects()
+        },
+        function(err){
+          putErrors(err);
+        }
+        );
       };
 
     $scope.updateProject=function(a){
@@ -57,8 +63,13 @@ angular.module('todoList')
 
     $scope.createTask=function(a, id){
       console.log(a, id);
-      Projects.newTask({id:id, task:{name:a.name, done: false, deadline: new Date (a.deadline)}});
-      $scope.loadProjects();
+      Projects.newTask({},{id:id, task:{name:a.name, done: false, deadline: new Date (a.deadline)}},
+        function (data) {
+          toastr.success("Task created!")
+          $scope.loadProjects()
+        },
+        function(err){putErrors(err)});
+
       };
 
     $scope.updateTask=function(task){
@@ -81,8 +92,12 @@ angular.module('todoList')
 
     $scope.createComment=function(id, text) {
       console.log(id+ " "+text);
-      Tasks.newComment({id: id, text: text});
-      $scope.loadProjects();
+      Tasks.newComment({},{id: id, text: text},
+        function (data) {
+          toastr.success("Comment created!")
+          $scope.loadProjects()
+        },
+        function(err){toastr.error(err)});
       };
 
     $scope.deleteComment=function(id, taskId){
@@ -119,7 +134,20 @@ angular.module('todoList')
             }
         }
         return a
-    }
+    };
+
+
+    function putErrors(error){
+
+      console.log(error)
+      $.each(error.data, function(index, value) {
+        console.log(index+value)
+        toastr.error(index.charAt(0).toUpperCase()+index.slice(1)+" "+value)
+      }); 
+    };
+
+
+
     $scope.loadProjects();
 
     }]);

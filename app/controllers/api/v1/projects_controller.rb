@@ -17,7 +17,7 @@ class Api::V1::ProjectsController < ApplicationController
     if @project.save
       render :json => @project
       else
-      render json: @project
+      render json: @project.errors, status: 422
     end
   end
 

@@ -20,8 +20,8 @@ angular.module('todoList')
         $state.go('home');
         }, function(error){
           $.each(error.data.errors, function(index, value) {
-               toastr.error(index.charAt(0).toUpperCase()+index.slice(1)+" "+value)
-}); 
+            toastr.error(index.charAt(0).toUpperCase()+index.slice(1)+" "+value)
+            }); 
           })
           
         };

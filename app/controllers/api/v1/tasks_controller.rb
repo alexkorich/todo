@@ -14,9 +14,7 @@ class Api::V1::TasksController < ApplicationController
       format.json{ render :json => @task}
     end
     else
-      respond_to do |format|
-      format.json{ render :json => @task.errors}
-    end
+      render json: @project.errors, status: 422
     end
   end
 

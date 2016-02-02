@@ -77,8 +77,8 @@
 <div ng-show="showCreateProject" class='center'>
  <form class="form-inline center" >
     <span class="input-group-btn">
-    <input class="form-control" id="time-select" datetime-picker ng-model="newProject.deadline" date-format="yyyy-MM-dd HH:mm:ss" placeholder='Select deadline' readonly/>
-    <input type="text" class="form-control" ng-model="newProject.name" placeholder="Project name" require>
+    <input required class="form-control" id="time-select" datetime-picker ng-model="newProject.deadline" date-format="yyyy-MM-dd HH:mm:ss" placeholder='Select deadline' readonly/>
+    <input type="text" required class="form-control" ng-model="newProject.name" placeholder="Project name" required>
     <input type="submit" class="btn btn-success"ng-click='createProject()'>   
     </span>
   </form>  
