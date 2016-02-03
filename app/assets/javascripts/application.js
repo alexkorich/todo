@@ -22,7 +22,7 @@
 //= require lodash/lodash
 //= require angular-animate/angular-animate.js
 //= require angular-toastr/dist/angular-toastr.tpls.js
-
+//= require angular-messages/angular-messages.min
 //= require angular-ui-sortable/sortable
 //= require angular-loading-bar/src/loading-bar
 //= require angularjs-datetime-picker/angularjs-datetime-picker

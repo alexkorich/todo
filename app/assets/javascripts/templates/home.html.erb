@@ -21,11 +21,11 @@
         </div>
        <div class="bottom-headd headd">
         <div class='glyphicon-plus-wrap'><span class="glyphicon glyphicon-plus glyphicon-plus-project"></span></div>
-          <form action="" class="form-inline" style="float:left; display:block">
-             <input type='text' class="form-control" datetime-picker   date-format="yyyy-MM-dd HH:mm:ss" ng-model="a.deadline" placeholder='Select deadline'  readonly/>
+          <form  novalidate  name="task.taskForm" class="form-inline" style="float:left; display:block">
+             <input type='text' class="form-control" required datetime-picker   date-format="yyyy-MM-dd HH:mm:ss" ng-model="a.deadline" placeholder='Select deadline'  readonly/>
 
-            <input type="text" placeholder="Start typing here to create a task ..." class="form-control" style="width:300px" ng-model="a.name">
-            <input type="button" value="Add task" class="btn btn-success" ng-click="createTask(a, project.id)">
+            <input type="text" name="taskName" placeholder="Start typing here to create a task ..." class="form-control" style="width:300px" ng-model="a.name">
+            <input type="submit"  ng-disabled="task.taskForm.$invalid" value="Add task" class="btn btn-success" ng-click="createTask(a, project.id)">
           </form>
       </div>
        </div>
@@ -34,17 +34,15 @@
         <tr> 
           <td style="width:20px"><input type="checkbox" style="display:block; float:left" ng-model="task.done" ng-click="toggleTask(task.id, task.done)"></td>
           <td class="">
-        <div ng-show="!task.showEditor" class="task-show"><div style="display:block; float:left" ng-cloak ng-class="{ 'done-task': task.done}">{{::task.name}}
+            <div ng-show="!task.showEditor" class="task-show"><div style="display:block; float:left" ng-cloak ng-class="{ 'done-task': task.done}">{{::task.name}}
             <span style="margin-left:5px;"class="label" ng-class="task.done ? 'label-default': 'label-primary'">due: {{::task.deadline| date: "MM/dd/yyyy HH:mm"}}</span></div></div>
           <div ng-show="task.showEditor" class="task-edit">
-           <form class="form-inline" >
+            <form  class="form-inline" >
               <input type='text' class="form-control input-sm" style="width:170px" datetime-picker   date-format="yyyy-MM-dd HH:mm:ss" ng-model="task.deadline" placeholder='Select deadline' readonly/>
-            <input type="text" placeholder="Task message " class="form-control input-sm" style="width:200px" ng-model="task.name">
-            <input type="button" value="Update task" class="btn btn-success btn-sm" ng-click="updateTask(task)">
-
-          </form>
+              <input type="text" placeholder="Task message " class="form-control input-sm" style="width:200px" ng-model="task.name">
+              <input type="button" value="Update task" class="btn btn-success btn-sm" ng-click="updateTask(task)">
+            </form>
           </div>
-            
           </td>
           <td class=""><span class="glyphicon glyphicon-chevron-down" ng-click="task.showComments =! task.showComments"></span></td>
           <td class=""><span class="glyphicon glyphicon-pencil"  ng-click="task.showEditor =! task.showEditor"></span></td>
@@ -59,9 +57,9 @@
         </tr>
         <tr ng-if="task.showComments">
           <td colspan="5">
-            <form class="form-inline">
-              <input type="text" class="form-control" ng-model="a.newComment" placeholder="Text">
-              <input class="btn btn-submit " type="button" value="Add new comment" ng-click="createComment(task.id, a.newComment)">
+            <form  novalidate class="form-inline" name="task.commentForm">
+              <input type="text" class="form-control" name="text" required ng-model="a.newComment" placeholder="Text">
+              <input class="btn btn-success " type="button" ng-disabled='task.commentForm.$invalid' value="Add new comment" ng-click="createComment(task.id, a.newComment)">
             </form>
           </td>
         </tr> 
@@ -75,11 +73,24 @@
   </div>   
 
 <div ng-show="showCreateProject" class='center'>
- <form class="form-inline center" >
-    <span class="input-group-btn">
-    <input required class="form-control" id="time-select" datetime-picker ng-model="newProject.deadline" date-format="yyyy-MM-dd HH:mm:ss" placeholder='Select deadline' readonly/>
-    <input type="text" required class="form-control" ng-model="newProject.name" placeholder="Project name" required>
-    <input type="submit" class="btn btn-success" value="Create project"ng-click='createProject()'>   
-    </span>
+  <form class="form-inline center" name="projectForm" novalidate ng-submit="createProject()">
+    <div style="foat:left">
+      <input style='display:block; float:left' required class="form-control" name="time" id="time-select" datetime-picker ng-model="newProject.deadline" date-format="yyyy-MM-dd HH:mm:ss" placeholder='Select deadline' readonly />
+      <div ng-messages="projectForm.time.$error" role="alert"  ng-if="projectForm.$touched">
+        <div ng-message="required"  class="alert alert-danger">You did not choose</div>
+      </div>  
+    </div>
+    
+     <div style="float:left">
+       <input type="text" name="lil" required class="form-control" ng-model="newProject.name" placeholder="Project name" required>
+     <div ng-messages="projectForm.lil.$error" role="alert"  ng-if="projectForm.lil.$dirty">
+        <div ng-message="required" class="alert alert-danger">You did not enter a name</div>
+    </div>
+
+     </div>
+    
+    <input type="submit" class="btn btn-success"  ng-disabled="projectForm.$invalid" value="Create project">   
+
+
   </form>  
 </div>

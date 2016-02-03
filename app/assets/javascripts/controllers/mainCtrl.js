@@ -37,12 +37,13 @@ angular.module('todoList')
       };
   
     $scope.createProject=function(){
+          $scope.showCreateProject = false;
+      
       console.log($scope.newProject)
       Projects.save({}, {project:{name:$scope.newProject.name, deadline: new Date($scope.newProject.deadline)}},
         function (data) {
           $scope.newProject={}
           toastr.success("Object created!")
-          $scope.isOpen = false;
           $scope.loadProjects()
         },
         function(err){
