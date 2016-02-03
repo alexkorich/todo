@@ -67,21 +67,21 @@
     </table>
     </div>
 </div>
-  <div class="center-block  btn btn-primary showCreateProject" style="width:150px" ng-click='showCreateProject =!showCreateProject'>
+  <div class="center-block  btn btn-primary showCreateProject" style="width:150px; margin-bottom:30px" ng-click='showCreateProject =!showCreateProject'>
     <span class='glyphicon glyphicon-plus'></span>
     <span >Add TODO List</span>
   </div>   
 
-<div ng-show="showCreateProject" class='center'>
-  <form class="form-inline center" name="projectForm" novalidate ng-submit="createProject()">
-    <div style="foat:left">
-      <input style='display:block; float:left' required class="form-control" name="time" id="time-select" datetime-picker ng-model="newProject.deadline" date-format="yyyy-MM-dd HH:mm:ss" placeholder='Select deadline' readonly />
+<div ng-show="showCreateProject" class='center-block'>
+  <form class="form-inline center-block" name="projectForm" novalidate ng-submit="createProject()" style="width:500px; margin-bottom:40px">
+    <div style="float:left; margin-right:10px">
+      <input  required class="form-control" name="time" id="time-select" datetime-picker ng-model="newProject.deadline" date-format="yyyy-MM-dd HH:mm:ss" placeholder='Select deadline' readonly />
       <div ng-messages="projectForm.time.$error" role="alert"  ng-if="projectForm.$touched">
         <div ng-message="required"  class="alert alert-danger">You did not choose</div>
       </div>  
     </div>
     
-     <div style="float:left">
+     <div  style="float:left; margin-right:10px">
        <input type="text" name="lil" required class="form-control" ng-model="newProject.name" placeholder="Project name" required>
      <div ng-messages="projectForm.lil.$error" role="alert"  ng-if="projectForm.lil.$dirty">
         <div ng-message="required" class="alert alert-danger">You did not enter a name</div>
