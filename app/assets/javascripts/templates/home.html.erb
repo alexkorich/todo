@@ -24,7 +24,7 @@
           <form  novalidate  name="task.taskForm" class="form-inline" style="float:left; display:block">
              <input type='text' class="form-control" required datetime-picker   date-format="yyyy-MM-dd HH:mm:ss" ng-model="a.deadline" placeholder='Select deadline'  readonly/>
 
-            <input type="text" name="taskName" placeholder="Start typing here to create a task ..." class="form-control" style="width:300px" ng-model="a.name">
+            <input type="text" name="taskName" placeholder="Start typing here to create a task ..." class="form-control task-name" style="width:300px" ng-model="a.name">
             <input type="submit"  ng-disabled="task.taskForm.$invalid" value="Add task" class="btn btn-success" ng-click="createTask(a, project.id)">
           </form>
       </div>

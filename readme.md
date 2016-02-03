@@ -8,10 +8,7 @@
 * Gems:                         cancancan, devise, carrierwave, capistrano  
 * Database:                     Postgres
 * CSS :                         Bootstrap Twitter
-* Backend tests:                Rspec
-* Frontend test:                Karma
-* Acceptance/functional tests: ­ RSpec + Capybara
-
+* Tests:                        Rspec
 
 
 Simple ToDo app on Ruby on Rails with AngularJS. Supports file upload for comments.
@@ -28,7 +25,4 @@ Simple ToDo app on Ruby on Rails with AngularJS. Supports file upload for commen
  * User is able to delete coments 
  * User is able to attach files to coments after coment creation
  * User is able to download attached file 
-
- ###Not yet implemented:
- * User is able to sign in/sign up by email/password or Facebook 
  * User is able to prioritise tasks into a project 
